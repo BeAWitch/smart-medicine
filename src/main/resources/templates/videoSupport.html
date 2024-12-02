@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>MeowMedicine - Template</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<style>
+    .nearMedicine_banner {
+        width: 100%;
+        min-height: 750px;
+        margin-top: 124px;
+
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    .video_container {
+        width: 70%;
+
+        /*background-color: #00d084;*/
+    }
+
+    .video_list {
+        width: 25%;
+        max-height: 750px;
+        overflow-y: auto;
+        /*background-color: darksalmon;*/
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .video_list > ul {
+        margin: 10px;
+        margin-top: 0;
+        box-shadow: 0 0 15px #cccccccc;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        flex-wrap: wrap;
+    }
+
+    .video_list span {
+        line-height: 40px;
+    }
+
+    .video_item {
+        width: 80%;
+        height: 100px;
+        color: black;
+        text-align: center;
+        border-radius: 20px;
+
+        transition: background-color .3s;
+
+        display: flex;
+        /*justify-content: center;*/
+        align-items: center;
+    }
+
+    .video_item > * {
+        margin-left: 30px;
+    }
+
+    .video_item:hover {
+        background-color: #fff1b8;
+    }
+
+    .active {
+        background-color: #ffe58f;
+    }
+
+    video {
+        width: 100%;
+    }
+
+    .play_btn {
+        width: 50px;
+        height: 50px;
+    }
+</style>
+<body>
+
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<div th:replace="common/common-bar::#header"></div>
+<div class="nearMedicine_banner">
+    <div class="video_container">
+        <video th:src="${currentVideo.getLink()}" controls autoplay>
+            您的浏览器不支持 video 标签。
+        </video>
+        <div>
+            <h2 th:text="${currentVideo.getTitle()}"></h2>
+            <div th:text="${currentVideo.getDescription()}"></div>
+        </div>
+    </div>
+
+    <div class="video_list">
+        <ul>
+            <li th:onclick="goTo([[${video.getId()}]])"
+                th:class="${currentVideoId == video.getId() ? 'active video_item': 'video_item'}"
+                th:each="video: ${videos}">
+                <img src="assets/images/play.png" class="play_btn"/>
+                <span th:text="${video.getTitle()}"></span>
+            </li>
+        </ul>
+    </div>
+</div>
+<div th:replace="common/common-bar::#back"></div>
+
+<div th:replace="common/common-bar::#footer"></div>
+
+<div th:replace="common/common-bar::#search"></div>
+
+<div th:replace="common/common-bar::#back-to-top"></div>
+
+<script>
+    function goTo(id) {
+        window.location.href = window.location.origin + window.location.pathname + '?id=' + id;
+    }
+
+    //{"code":"SUCCESS","message":"OK","data":[{"id":1,"title":"视频标题1","description":"视频描述1","link":"www.baidu.com"},{"id":2,"title":"视频标题2","description":"视频描述2","link":"www.baidu.com"},{"id":3,"title":"视频标题3","description":"视频描述3","link":"www.baidu.com"},{"id":4,"title":"视频标题4","description":"视频描述4","link":"www.baidu.com"},{"id":5,"title":"视频标题5","description":"视频描述5","link":"www.baidu.com"}],"success":true,"successWithDateResp":true}
+</script>
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugin.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/custom-swiper.js"></script>
+<script src="assets/js/custom-nav.js"></script>
+<script src="common/utils/reg.js"></script>
+<script src="common/layer/layer.js"></script>
+<script src="common/custom.js"></script>
+<script src="assets/js/xtiper.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta name="author" content=""/>
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="css/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="css/icomoon.css">
+    <!-- Themify Icons-->
+    <link rel="stylesheet" href="css/themify-icons.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <!-- Owl Carousel  -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="gtco-loader"></div>
+
+<div id="page">
+    <div class="page_bg"></div>
+    <div class="page-inner">
+        <header id="gtco-header" class="gtco-cover" role="banner">
+            <div class="overlay"></div>
+            <div class="gtco-container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-0 text-left">
+
+
+                        <div class="row row-mt-15em">
+                            <div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
+                                <span class="intro-text-small">Welcome to Smart-Medicine</span>
+                                <h1>最好的医疗咨询和自我诊断健康中心</h1>
+                            </div>
+                            <div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+                                <div class="form-wrap">
+                                    <div class="tab">
+                                        <ul class="tab-menu">
+                                            <li class="active gtco-first"><a href="#" data-tab="signup">注册</a>
+                                            </li>
+                                            <li class="gtco-second"><a href="#" data-tab="login">登录</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-content-inner active" data-content="signup">
+                                                <form action="#">
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label for="username">账户名</label>
+                                                            <input type="text" class="form-control" id="username">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label for="password">密码</label>
+                                                            <input type="password" class="form-control"
+                                                                   id="password">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label for="email">邮箱</label>
+                                                            <input type="text" class="form-control"
+                                                                   id="email">
+                                                            <a id="email_btn" onclick="sendEmail()">发送验证码</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label for="verify">验证码</label>
+                                                            <input type="text" class="form-control"
+                                                                   id="verify">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <button onclick="registrator()" class="btn btn-primary">
+                                                                注册
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <div class="tab-content-inner" data-content="login">
+                                                <form action="#">
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label for="username">用户名</label>
+                                                            <input type="text" class="form-control" id="login_username">
+                                                        </div>
+                                                    </div>
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <label for="password">密码</label>
+                                                            <input type="password" class="form-control"
+                                                                   id="login_password">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row form-group">
+                                                        <div class="col-md-12">
+                                                            <button onclick="login()" class="btn btn-primary">登录
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+
+</div>
+
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
+
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- jQuery Easing -->
+<script src="js/jquery.easing.1.3.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Waypoints -->
+<script src="js/jquery.waypoints.min.js"></script>
+<!-- Carousel -->
+<script src="js/owl.carousel.min.js"></script>
+<!-- countTo -->
+<script src="js/jquery.countTo.js"></script>
+<!-- Magnific Popup -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/magnific-popup-options.js"></script>
+<!-- Main -->
+<script src="js/main.js"></script>
+
+<script src="/common/layer/layer.js"></script>
+<script>
+    function emailReg(email) {
+        let emailReg = /^[\da-z]+([\-\.\_]?[\da-z]+)*@[\da-z]+([\-\.]?[\da-z]+)*(\.[a-z]{2,})+$/;
+        return emailReg.test(email);
+    }
+
+    function registrator() {
+        let userName = $('#username').val();
+        let userPwd = $('#password').val();
+        let userEmail = $('#email').val();
+        let code = $('#verify').val();
+
+        if (!userName || !userPwd || !userEmail || !code) {
+            layer.msg("请完整填写信息");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "register",
+            data: {
+                userAccount: userName,
+                userPwd: userPwd,
+                userEmail: userEmail,
+                code: code,
+            },
+            dataType: "json",
+            success: function (data) {
+                if (data['code'] === 'SUCCESS') {
+                    $("#login_username").val(userName)
+                    $("#login_password").val(userPwd)
+                    layer.msg("注册成功");
+                    login()
+                    return
+                }
+                layer.msg(data['message']);
+            }
+        });
+    }
+
+    function sendEmail() {
+        // time("#email_btn", 5);
+        let email = $('#email').val();
+        if (!email) {
+            layer.msg("邮箱不能为空");
+            return;
+        }
+        if (!emailReg(email)) {
+            layer.msg("请输入正确的邮箱地址");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "sendEmailCode",
+            data: {
+                email: email,
+            },
+            dataType: "json",
+            success: function (data) {
+                layer.msg(data['message'])
+                if (data['code'] !== 'SUCCESS') {
+                    time("#email_btn", 60);
+                }
+            }
+        });
+    }
+
+    function time(o, wait) {
+        if (wait === 0) {
+            $(o).css("pointer-events", 'auto');
+            $(o).text("获取验证码");
+        } else {
+            $(o).css("pointer-events", "none");
+            $(o).text(wait + "秒");
+            wait--;
+            setTimeout(function () {
+                time(o, wait);
+            }, 1000);
+        }
+    }
+
+    function login() {
+        const name = $("#login_username").val()
+        const password = $("#login_password").val()
+
+        if (!name || !password) {
+            layer.msg('请填写账户或密码')
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "login",
+            data: {
+                userAccount: name,
+                userPwd: password
+            },
+            dataType: "json",
+            success: function (data) {
+                layer.msg(data['message']);
+                if (data['code'] === 'SUCCESS') {
+                    setTimeout(() => {
+                        open(window.location.origin, "_self")
+                    }, 2000);
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+
+</html>

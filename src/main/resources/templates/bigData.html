@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>MeowMedicine - Template</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
+
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+    .nearMedicine_banner {
+        width: 100%;
+        min-height: 100vh;
+        margin-top: 124px;
+    }
+</style>
+<body>
+
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<div th:replace="common/common-bar::#header"></div>
+<iframe class="nearMedicine_banner" src="/visualization/views/index.html"></iframe>
+
+<div th:replace="common/common-bar::#back"></div>
+
+<div th:replace="common/common-bar::#footer"></div>
+
+<div th:replace="common/common-bar::#search"></div>
+
+<div th:replace="common/common-bar::#back-to-top"></div>
+
+<script>
+    // fetch('/history/data',{
+    //     method: 'POST'
+    // }).then((v) => v.json()).then(val => {
+    //     const {data,keys} = val
+    //
+    //     option = {
+    //         title: {
+    //             x: 'center',
+    //             text: "近五日搜索排行",
+    //         },
+    //         tooltip: {
+    //             trigger: "axis",
+    //         },
+    //         legend: {
+    //             x: 'center',
+    //             y: 'bottom',
+    //             data: data.map((v) => v.text)
+    //         },
+    //         grid: {
+    //             bottom: "30%",
+    //             containLabel: true,
+    //         },
+    //         toolbox: {
+    //             feature: {
+    //                 // saveAsImage: {},
+    //             },
+    //         },
+    //         xAxis: {
+    //             type: "category",
+    //             boundaryGap: false,
+    //             data: keys
+    //         },
+    //         yAxis: {
+    //             type: "value",
+    //         },
+    //         //
+    //         // {
+    //         //     name: "广州西门子变压器公司",
+    //         //         type: "line",
+    //         //     // stack: 'Total',
+    //         //     data: [130, 105, 135, 120, 175, 205, 185, 195, 208],
+    //         //     smooth: true,
+    //         // },
+    //         series: data.map(v => {
+    //             return {
+    //                 name: v.text,
+    //                 type: 'line',
+    //                 data: v.point,
+    //                 smooth: true,
+    //             }
+    //         })
+    //     };
+    //     echarts.init(document.getElementById('charts2')).setOption(option)
+    // })
+</script>
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugin.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/custom-swiper.js"></script>
+<script src="assets/js/custom-nav.js"></script>
+<script src="common/utils/reg.js"></script>
+<script src="common/layer/layer.js"></script>
+<script src="common/custom.js"></script>
+<script src="assets/js/xtiper.min.js"></script>
+</body>
+</html>

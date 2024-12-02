@@ -1,0 +1,11 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/mainsrc/testsrc/mainsrc/test/**/build/
+src/main/resources/static/patient-friends
+src/main/resources/static/ocr
+
+### VS Code ###
+.vscode/
+/.idea
+*.iml

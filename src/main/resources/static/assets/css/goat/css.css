@@ -1,0 +1,329 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+}
+.nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    top: 20px;
+    left: 110px;
+    width: 650px;
+    height: 50px;
+    background-color: rgba(255,255,255,.2);
+}
+.nava{
+    display: block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: rgba(255,255,255,.6);
+    color: rgb(75, 75, 75);
+    font-size:18px;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    transition: .2s;
+}
+.nava:hover{
+    background-color: rgb(189, 189, 189);
+    color: #000;
+}
+.top{
+    width: 100%;
+    height: 90px;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+.top a{
+    color: black;
+}
+.topbox{
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.topb{
+    width: 100%;
+    height: 90px;
+    line-height: 90px;
+    display: flex;
+    justify-content: space-between;
+}
+.topbleft a:hover{
+    background-color: rgb(156, 156, 156);
+}
+.topbleft a{
+    width: 100px;
+    text-align: center;
+}
+.topbleft{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+    left: 110px;
+}
+.topbright{
+    position: absolute;
+    right: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 300px;
+    height: 90px;
+    line-height: 90px
+}
+.topbright input{
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding-left: 15px;
+}
+
+.topimg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 600px;
+    background-color: rgb(107, 107, 107);
+}
+.topimg2{
+    height: 300px;
+}
+.topimgbox{
+    width: 900px;
+    height: 220px;
+    display: flex;
+    flex-wrap: wrap;
+    color: white;
+    align-content: space-around;
+}
+.topimgbox p{
+    width: 100%;
+    color: rgb(192, 192, 192);
+    font-size: 16px;
+}
+.topimgbox h1{
+    font-size: 45px;
+}
+.topimgbottom{
+    width: 100px;
+    height: 40px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+    margin-top: 30px;
+}
+
+/* 小图片 */
+.smallbox{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 280px;
+    margin-top: 100px;
+}
+.small{
+    display: flex;
+    justify-content: space-around;
+    width: 90%;
+    height: 100%;
+}
+.smallimg{
+    width: 200px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-between;
+}
+.imgbox{
+    width: 200px;
+    height: 200px;
+    background-color: rgb(105, 105, 105);
+}
+.smallimg p,.smallimg h3{
+    width: 100%;
+    text-align: center;
+}
+
+/* 文字横幅 */
+.text{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+.text h2{
+    font-size: 30px;
+}
+.text p{
+    width: 100%;
+    text-align: center;
+}
+
+/* 中间内容区 */
+.middle{
+    position: relative;
+    width: 80%;
+    height: 1350px;
+}
+.middlebox{
+    width: 80%;
+    height: 400px;
+    display: flex;
+    justify-content: flex-start;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.span{
+    position: absolute;
+    left: -18px;
+    writing-mode: tb-rl;
+    transform: rotateX(180deg);
+}
+.span2{
+    position: absolute;
+    right: -25px;
+}
+.middleleft{
+    width: 300px;
+    height: 100%;
+    background-color: rgb(97, 97, 97);
+}
+.middleright{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-around;
+    width: 500px;
+    height: 100%;
+}
+.middleright p{
+    width: 100%;
+    text-align: center;
+}
+.middlerightboximg{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+.smallimg2{
+    width: 150px;
+    height: 200px;
+}
+.imgbox2{
+    width: 150px;
+    height: 150px;
+}
+.middlerightboxbottom{
+    text-align: center;
+    line-height: 40px;
+    width: 120px;
+    height: 40px;
+    border: 2px solid #ccc;
+}
+.middle1{
+    position: absolute;
+}
+.middle2{
+    position: absolute;
+    right: 0;
+    top: 440px;
+}
+.middle3{
+    position: absolute;
+    top: 880px;
+}
+
+/* 小图片集 */
+.imgarr{
+    width: 70%;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-bottom: 80px;
+}
+.arrimg{
+    width: 170px;
+    height: 100px;
+    background-color: rgb(88, 88, 88);
+}
+
+
+/* 长图片 */
+.bottommidle{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.topimg2{
+    display: flex;
+    justify-content: center;
+}
+.bml,.bmr{
+    width: 450px;
+    color: rgb(190, 190, 190);
+}
+.bml h1,.bmr h1{
+    color: white;
+    font-size: 46px;
+}
+.bmr span{
+    color: white;
+}
+
+/* 下方图文 */
+.tw{
+    width: 80%;
+    height: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.twbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 400px;
+    height: 200px;
+}
+.twl{
+    width: 150px;
+    height: 200px;
+    background-color: rgb(126, 126, 126);
+}
+.twr{
+    width: 200px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.twr p{
+    width: 100%;
+}
+
+/* 底部条 */
+.foot{
+    width: 100%;
+    height: 400px;
+    background-color: rgb(129, 129, 129);
+    margin-top: 100px;
+}

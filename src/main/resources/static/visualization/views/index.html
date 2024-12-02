@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据可视化demo</title>
+    <link href="../styles/common.css" rel="stylesheet">
+    <script src="../scripts/Plugin/jquery-3.3.1.min.js"></script>
+    <script src="../scripts/Plugin/echarts.min.js"></script>
+    <script src="../scripts/Plugin/bmap.min.js"></script>
+    <!--    <script src="http://api.map.baidu.com/api?v=2.0&ak=WSrX4bCfgcjTfhWNCwvfI1ZnQnfZDxFW"></script>-->
+    <script src="../scripts/common.js"></script>
+    <script src="../scripts/index.js"></script>
+    <script src="../scripts/Plugin/laydate/laydate.js"></script>
+</head>
+
+<style>
+    #mapChart {
+        width: 93%;
+        height: 93%;
+        display: inline-block;
+        /* padding-left: 2.25%; */
+        /* padding-top: 2.2%; */
+        position: relative;
+        /* background-color: rgb(229, 227, 223); */
+        overflow: hidden;
+        transform: translateZ(0px);
+        margin: 3%;
+    }
+
+    /*搜索栏*/
+    .sea-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        /*width: 450px;*/
+        /*height: 30px;*/
+        /*background-color: green;*/
+        /*margin: 100px auto;*/
+        /*border: 1px solid #317EF3;*/
+    }
+
+    .blue-input {
+        float: left;
+        /*width: 350px;*/
+        height: 30px;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    .blue-button {
+        width: 100px;
+        height: 30px;
+        background-color: #317EF3;
+        color: white;
+        font-size: 15px;
+    }
+
+    /* 搜索下拉框*/
+    ul#drop {
+        height: 480px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        overflow: scroll;
+    }
+
+    ul#drop li {
+        margin: 0;
+        padding: 10px;
+    }
+
+    ul#drop li:hover {
+        background-color: darkgrey;
+        width: 200px;
+    }
+
+    p#selectedId {
+        display: inline-block;
+        z-index: 10000;
+    }
+
+</style>
+<body>
+<!--顶部-->
+<header class="header left">
+    <!--    <div class="left nav">-->
+    <!--        <ul>-->
+    <!--            <li class="nav_active"><i class="nav_1"></i><a href="index.html">采集概况</a></li>-->
+    <!--            <li><i class="nav_2"></i><a href="quota.html">指标分析</a></li>-->
+    <!--            <li><i class="nav_3"></i><a href="trend.html">趋势分析</a></li>-->
+    <!--            <li><i class="nav_4"></i><a href="chronic.html">慢病病人列表</a></li>-->
+    <!--        </ul>-->
+    <!--    </div>-->
+    <!--    <div class="header_center left" style="position:relative">-->
+
+    <!--        <h2><strong>大数据展示</strong></h2>-->
+
+    <!--    </div>-->
+    <div class="right nav text_right">
+        <ul>
+
+        </ul>
+    </div>
+
+</header>
+<!--内容部分-->
+<div class="con left">
+    <!--数据总概-->
+    <div class="con_div">
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img src="../images/info_1.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>总采集数据量(G)</p>
+                    <p>1235</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="../images/info_2.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>当月采集数据量(G)</p>
+                    <p>235</p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img src="../images/info_3.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>总门诊数(人)</p>
+                    <p class="sky">12332</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="../images/info_4.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>当月门诊数(人)</p>
+                    <p class="sky">12332</p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+
+            <div class="con_div_text01 left">
+                <img src="../images/info_5.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>总住院数(人)</p>
+                    <p class="org">12332</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img src="../images/info_6.png" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>当月住院数(人)</p>
+                    <p class="org">12332</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--统计分析图-->
+    <div class="div_any">
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="../images/title_1.png">各医院采集数据量</div>
+                <p id="pieChart1" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="../images/title_2.png">各医院门诊住院费用</div>
+                <p id="histogramChart" class="p_chart"></p>
+            </div>
+        </div>
+        <div class="div_any02 left ">
+            <div class="div_any_child div_height">
+                <div class="div_any_title any_title_width"><img src="../images/title_0.png">附近医院</div>
+                <div id="mapChart">
+                    <div style="z-index: 10000" class="sea-container">
+                        <div style="display: flex">
+                            <input type="text" name="search" id="search" class="blue-input">
+                            <button class="blue-button">搜索</button>
+                        </div>
+                        <p id="selectedId"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="../images/title_3.png">数据采集条数(当日)</div>
+                <p id="lineChart" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img src="../images/title_4.png">关键词搜索趋势</div>
+                <p id="lineChart2" class="p_chart"></p>
+            </div>
+        </div>
+    </div>
+
+    <!--    对话框部分-->
+    <div id="el-dialog" class="">
+        <div class="xc_layer"></div>
+        <div class="popBox" id="printView">
+            <div class="ttBox"><span class="tt" id="reportTitle">第一医院</span><img src="../images/close.png"
+                                                                                     style="width: 30px;float: right;cursor: pointer;"
+                                                                                     title="关闭弹窗" class="close"/>
+            </div>
+            <div class="txtBox" id="el-dialog_body">
+                <div id="distance"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+
+<script src="https://map.qq.com/api/js?v=2.exp&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&callback=init"></script>
+
+<script>
+    // var arr = ["中国","日本","美国","俄罗斯","加拿大","英国","澳大利亚","西班牙","德国","孟买加","阿拉伯","印度","印度尼西亚"];
+    var search = document.getElementsByClassName("blue-input")[0];
+    var selectedId = document.getElementById("selectedId")
+
+    function showList() {
+        let arr = Object.keys(mapKeyOf)
+        console.log('showList')
+        var res = searchByIndexOf(search.value, arr);
+        for (let i = 0; i < res.length; i++) {
+            let li = document.createElement("li");
+            li.innerHTML = res[i];
+            li.addEventListener('mouseenter', () => {
+                console.log('click li')
+                window.map.panTo(mapKeyOf[res[i]])
+            })
+            document.getElementById("drop").appendChild(li);
+        }
+    }
+
+    search.oninput = function getMoreContents() {
+        console.log('onInput')
+        //删除ul
+        var drop = document.getElementById("drop");
+        selectedId.removeChild(drop);
+        //把ul添加回来
+        var originalUl = document.createElement("ul");
+        originalUl.id = "drop";
+        selectedId.appendChild(originalUl);
+
+        showList();
+    }
+
+    // 添加获取焦点事件
+    search.onfocus = function () {
+        console.log('onFocus')
+        // 初始下拉列表
+        var originalUl = document.createElement("ul");
+        originalUl.id = "drop";
+        selectedId.appendChild(originalUl);
+        showList();
+    }
+
+    //添加失去焦点事件
+    search.onblur = function () {
+        console.log('blur')
+        setTimeout(() => {
+            var drop = document.getElementById("drop");
+            selectedId.removeChild(drop);
+        }, 100)
+    }
+
+
+    //模糊查询:利用字符串的indexOf方法
+    function searchByIndexOf(keyWord, list) {
+        if (!(list instanceof Array)) {
+            return;
+        }
+        if (keyWord == "") {
+            return [];
+        } else {
+            var len = list.length;
+            var arr = [];
+            for (var i = 0; i < len; i++) {
+                //如果字符串中不包含目标字符会返回-1
+                if (list[i].indexOf(keyWord) >= 0) {
+                    arr.push(list[i]);
+                }
+            }
+            return arr;
+        }
+
+    }
+
+    //正则匹配
+    /*function searchByRegExp(keyWord, list){
+        if(!(list instanceof Array)){
+            return ;
+        }
+        var len = list.length;
+        var arr = [];
+        var reg = new RegExp(keyWord);
+        for(var i=0;i<len;i++){
+            //如果字符串中不包含目标字符会返回-1
+            if(list[i].match(reg)){
+                arr.push(list[i]);
+            }
+        }
+        return arr;
+    }*/
+</script>
+
+<script>
+    var mapKeyOf = {}
+    var polyline = undefined
+    window.onload = function () {
+        navigator.geolocation.getCurrentPosition((c) => {
+
+            let center = new qq.maps.LatLng(c.coords.latitude, c.coords.longitude)
+            window.map = new qq.maps.Map(document.getElementById("mapChart"), {
+                center: center,      // 地图的中心地理坐标。
+                zoom: 100000                                           // 地图的中心地理坐标。
+            });
+
+            let marker = new qq.maps.Marker({
+                position: center,
+                map: map,
+                decoration: new qq.maps.MarkerDecoration("我"),
+                zIndex: 114514
+            })
+
+            //自己的marker
+            qq.maps.event.addListener(marker, "click", function () {
+                console.log('pan to me')
+                map.panTo(center);
+            });
+
+            //附近的marker
+            const vList = [];
+
+            let all = 114514;
+            const fetchDistance = async (pIndex = 1) => {
+                return await fetch("/medicineNearBy?page_index=" + pIndex + "&pos=" + c.coords.latitude + "," + c.coords.longitude)
+                    .then((v) => v.json())
+                    .then((v) => {
+                        all = Math.floor(v.count / 20 + 1);
+                        console.log('all 为', all)
+                        return v.data;
+                    }).catch((v) => {
+                        alert("获取附近地点失败")
+                        console.log(v)
+                    })
+            }
+
+            const getHosts = async () => {
+                for (let i = 1; i <= all; i++) {
+                    console.log('拉取第', i, '页的数据，共', all, "页,每页20个")
+                    let a = await fetchDistance(i);
+
+                    a.forEach((i) => {
+                        vList.push(i)
+                    })
+                }
+
+                vList.forEach(v => {
+                    const marker = new qq.maps.Marker({
+                        position: new qq.maps.LatLng(v.location.lat, v.location.lng),
+                        map: map,
+                        title: v.title
+                    })
+
+                    window.mapKeyOf[v.title] = new qq.maps.LatLng(v.location.lat, v.location.lng)
+                    qq.maps.event.addListener(marker, "click", async function () {
+                        if (polyline !== undefined) {
+                            console.log("remove polyline")
+                            polyline.setMap(null)
+                            polyline = undefined
+                        }
+                        let data = await fetch(`/waypoint?a1=${c.coords.latitude}&n1=${c.coords.longitude}&a2=${v.location.lat}&n2=${v.location.lng}`)
+                            .then((v) => v.json())
+                        if (data.status !== 0) {
+                            layer.msg(data['message'])
+                            return
+                        }
+                        data = data.result.routes[0].polyline
+
+                        const qqPos = []
+                        for (var i = 2; i < data.length; i++) {
+                            data[i] = data[i - 2] + data[i] / 1000000
+                        }
+
+                        for (let i = 0; i + 1 <= data.length; i += 2) {
+                            qqPos.push(new qq.maps.LatLng(data[i],data[i+1]))
+                        }
+
+                        polyline = new qq.maps.Polyline({
+                            //折线是否可点击
+                            clickable: true,
+                            //鼠标在折线上时的样式
+                            cursor: 'crosshair',
+                            //折线是否可编辑
+                            editable: true,
+                            map: map,
+                            //折线的路径
+                            path: qqPos,
+                            //折线的颜色
+                            strokeColor: '#000000',
+                            //可以设置折线的透明度
+                            //strokeColor: new qq.maps.Color(0, 0, 0, 0.5),
+                            //折线的样式
+                            strokeDashStyle: 'butt',
+                            //折线的宽度
+                            strokeWeight: 3,
+                            //折线末端线帽的样式
+                            strokeLinecap: 'square',
+                            //折线是否可见
+                            visible: true,
+                            //折线的zIndex
+                            zIndex: 1000
+
+
+                        });
+
+
+                        // $("#el-dialog").removeClass('hide')
+                        // $("#reportTitle").html(v.title)
+                        // $("#distance").html(calculateDistance({
+                        //     lat: c.coords.latitude,
+                        //     lon: c.coords.longitude
+                        // }, {
+                        //     lat: v.location.lat,
+                        //     lon: v.location.lng
+                        // }).toFixed(2) + "米")
+                    });
+                })
+            }
+            getHosts();
+        }, (err) => {
+            console.log(err)
+            switch (err.code) {
+                case 1:
+                    alert("用户拒绝定位！")
+                    break
+                default:
+                    alert("未知错误!")
+                    break
+            }
+        }, {
+            enableHighAccuracy: true
+        })
+    }
+
+    function calculateDistance(point1, point2) {
+        console.log('calc')
+        const R = 6371e3; // 地球半径，单位：米
+        const lat1 = point1.lat * Math.PI / 180; // 纬度，转换为弧度
+        const lat2 = point2.lat * Math.PI / 180; // 纬度，转换为弧度
+        const deltaLat = (point2.lat - point1.lat) * Math.PI / 180; // 纬度差，转换为弧度
+        const deltaLon = (point2.lon - point1.lon) * Math.PI / 180; // 经度差，转换为弧度
+
+        const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
+            Math.cos(lat1) * Math.cos(lat2) *
+            Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+
+        // 最终距离，单位：米
+        return R * c;
+    }
+</script>
+</html>
