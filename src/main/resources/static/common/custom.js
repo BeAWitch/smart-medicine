@@ -570,3 +570,54 @@ function findOwnArticle(){
     }
     reloadToGO(href);
 }
+
+function findCategory(){
+    let categoryName = $("#categoryName").val().trim();
+    let href = window.location.href;
+    if (categoryName === ""){
+        href = href.split("/")[0] + "/all-category";
+    }else{
+        href = href.split("/")[0] + "/findCategories?categoryName=" + categoryName;
+    }
+    reloadToGO(href);
+}
+
+function saveCategory() {
+    let id = $('#id').val();
+    let categoryName = $("#categoryName").val().trim();
+    let userId = $('#userId').val();
+
+    $.ajax({
+        type: "POST",
+        url: "category/save",
+        data: {
+            id: id,
+            categoryName: categoryName,
+            createUser: userId,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
+function deleteCategory(id) {
+    $.ajax({
+        type: "POST",
+        url: "category/delete",
+        data: {
+            id: id,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>类别管理</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
+
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<div th:replace="common/common-bar::#header"></div>
+
+<div id="dashboard">
+    <div class="container">
+        <div class="dashboard-main">
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div th:replace="common/common-bar::#forum-sidebar(cur='category')"></div>
+                </div>
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="row mb-4">
+                            <div class="col-lg-12 col-md-12 col-xs-12">
+                                <div class="dashboard-list-box with-icons">
+                                    <div class="dashboard-title">
+                                        <h4 class="mb-0">全部类别 </h4>
+                                        <p class="mb-0"><a href="/add-category">添加类别</a>。
+                                        </p>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-3">
+                                        <label style="margin-left: 20px">类别名：</label>
+                                        <input id="categoryName" type="text" style="width: fit-content;margin-left: 20px" th:value="${categoryName}"/>
+                                        <button class="btn btn-primary" style="margin-left: 20px" th:onclick="findCategory()">搜索</button>
+                                    </div>
+                                    <div class="table-responsive table-desi">
+                                        <table class="basic-table table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>类别名</th>
+                                                <th>创建者</th>
+                                                <th>创建时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="category:${categories}">
+                                                <td th:text="${category.categoryName}"></td>
+                                                <td th:text="${userIdToNameMap.get(category.createUser)}"></td>
+                                                <td th:text="${#dates.format(category.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td>
+                                                    <a th:if="${session.loginUser.roleStatus eq 1}" th:href="@{add-category(id=${category.id})}"><i
+                                                            class="fa fa-pencil-square-o text-primary"
+                                                            aria-hidden="true"></i> </a>
+                                                    <a th:if="${session.loginUser.roleStatus eq 1}" th:onclick="deleteCategory([[${category.id}]])"
+                                                       href="javascript:void(0)"><i class="fa fa-trash-o text-danger"
+                                                                                    aria-hidden="true"></i> </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        <div style="text-align: center" th:if="${categories.size()>0}">
+                                            <a th:href="@{findArticles(page=${page - 1}, categoryName=${categoryName})}" th:if="${page gt 1}" style="right: 5px"><span>上一页</span></a>
+                                            <a th:href="@{findArticles(page=${page + 1}, categoryName=${categoryName})}" th:if="${page ge 1 && page lt size}" style="margin-left: 5px"><span>下一页</span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div th:replace="common/common-bar::#back"></div>
+
+<div th:replace="common/common-bar::#footer"></div>
+
+<div th:replace="common/common-bar::#search"></div>
+
+<div th:replace="common/common-bar::#back-to-top"></div>
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugin.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/custom-nav.js"></script>
+<script src="assets/js/jpanelmenu.min.js"></script>
+<script src="assets/js/dashboard-custom.js"></script>
+<script src="common/utils/reg.js"></script>
+<script src="common/layer/layer.js"></script>
+<script src="common/custom.js"></script>
+</body>
+</html>

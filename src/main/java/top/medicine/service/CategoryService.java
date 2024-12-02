@@ -2,6 +2,7 @@ package top.medicine.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.stereotype.Service;
+import top.medicine.entity.Article;
 import top.medicine.entity.Category;
 import top.medicine.utils.Assert;
 import top.medicine.utils.BeanUtil;
@@ -71,5 +72,21 @@ public class CategoryService extends BaseService<Category> {
             integerStringMap.put(category.getId(), category.getCategoryName());
         }
         return integerStringMap;
+    }
+
+    public Map<String, Object> getCategoryList(String categoryName, Integer page) {
+
+        List<Category> categories = null;
+        Map<String, Object> map = new HashMap<>(4);
+        QueryWrapper<Category> queryWrapper = new QueryWrapper<>();
+        if (Assert.notEmpty(categoryName)) {
+            queryWrapper.like("category_name", categoryName);
+        }
+        queryWrapper.last("limit " + (page - 1) * 9 + "," + page * 9);
+        categories = categoryDao.selectList(queryWrapper);
+
+        map.put("categories", categories);
+        map.put("size", categories.size() < 9 ? 1 : categories.size() / 9 + 1);
+        return map;
     }
 }
