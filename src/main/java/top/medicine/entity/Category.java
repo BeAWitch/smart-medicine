@@ -1,5 +1,7 @@
 package top.medicine.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -11,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 public class Category {
     @NotNull(groups = Update.class)
+    @TableId(type = IdType.AUTO)
     private Integer id;//主键ID
     @NotEmpty
     private String categoryName;//分类名称

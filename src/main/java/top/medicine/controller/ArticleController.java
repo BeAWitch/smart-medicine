@@ -27,10 +27,4 @@ public class ArticleController extends BaseController<Article>{
         articleService.save(article);
         return RespResult.success();
     }
-
-    @DeleteMapping
-    public RespResult delete(@NotNull final Integer id) {
-        articleService.delete(id);
-        return RespResult.success();
-    }
 }

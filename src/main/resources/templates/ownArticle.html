@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>话题广场</title>
+    <title>我的文章</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
 
@@ -35,7 +35,7 @@
         <div class="dashboard-main">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                    <div th:replace="common/common-bar::#forum-sidebar(cur='forum')"></div>
+                    <div th:replace="common/common-bar::#forum-sidebar(cur='article')"></div>
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="dashboard-content">
@@ -55,7 +55,7 @@
                                             <option selected></option>
                                             <option th:each="category:${categories}" th:text="${category.categoryName}" th:value="${category.categoryName}"></option>
                                         </select>
-                                        <button class="btn btn-primary" style="margin-left: 20px" th:onclick="findArticle()">搜索</button>
+                                        <button class="btn btn-primary" style="margin-left: 20px" th:onclick="findOwnArticle()">搜索</button>
                                     </div>
                                     <div class="table-responsive table-desi">
                                         <table class="basic-table table table-hover">
@@ -63,7 +63,6 @@
                                             <tr>
                                                 <th>标题</th>
                                                 <th>类别</th>
-                                                <th>作者</th>
                                                 <th>上传时间</th>
                                                 <th>操作</th>
                                             </tr>
@@ -72,15 +71,14 @@
                                             <tr th:each="article:${articles}">
                                                 <td th:text="${article.title}"></td>
                                                 <td th:text="${categoryIdToNameMap.get(article.categoryId)}"></td>
-                                                <td th:text="${userIdToNameMap.get(article.createUser)}"></td>
                                                 <td th:text="${#dates.format(article.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
                                                 <td>
                                                     <a th:href="@{articleDetail(id=${article.id}, createUser=${userIdToNameMap.get(article.createUser)}, category=${categoryIdToNameMap.get(article.categoryId)})}"><i
                                                             class="fa fa-eye text-info" aria-hidden="true"></i> </a>
-                                                    <a th:if="${session.loginUser.roleStatus eq 1}" th:href="@{add-article(id=${article.id})}"><i
+                                                    <a th:href="@{add-article(id=${article.id})}"><i
                                                             class="fa fa-pencil-square-o text-primary"
                                                             aria-hidden="true"></i> </a>
-                                                    <a th:if="${session.loginUser.roleStatus eq 1}" th:onclick="deleteArticle([[${article.id}]])"
+                                                    <a th:onclick="deleteArticle([[${article.id}]])"
                                                        href="javascript:void(0)"><i class="fa fa-trash-o text-danger"
                                                                                     aria-hidden="true"></i> </a>
                                                 </td>
@@ -88,8 +86,8 @@
                                             </tbody>
                                         </table>
                                         <div style="text-align: center" th:if="${articles.size()>0}">
-                                            <a th:href="@{findArticles(page=${page - 1}, title=${title}, category=${category})}" th:if="${page gt 1}" style="right: 5px"><span>上一页</span></a>
-                                            <a th:href="@{findArticles(page=${page + 1}, title=${title}, category=${category})}" th:if="${page ge 1 && page lt size}" style="margin-left: 5px"><span>下一页</span></a>
+                                            <a th:href="@{findOwnArticles(page=${page - 1}, title=${title}, category=${category})}" th:if="${page gt 1}" style="right: 5px"><span>上一页</span></a>
+                                            <a th:href="@{findOwnArticles(page=${page + 1}, title=${title}, category=${category})}" th:if="${page ge 1 && page lt size}" style="margin-left: 5px"><span>下一页</span></a>
                                         </div>
                                     </div>
                                 </div>

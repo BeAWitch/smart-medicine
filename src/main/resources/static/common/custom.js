@@ -517,6 +517,7 @@ function findArticle(){
 
 function saveArticle() {
     let id = $('#id').val();
+    let userId = $('#userId').val();
     let title = $('#title').val();
     let category = $('#category').val();
     let content = $('#content').val();
@@ -527,8 +528,9 @@ function saveArticle() {
         data: {
             id: id,
             title: title,
-            category: category,
+            categoryId: category,
             content: content,
+            createUser: userId,
         },
         dataType: "json",
         success: function (data) {
@@ -538,4 +540,33 @@ function saveArticle() {
             }
         }
     });
+}
+
+function deleteArticle(id) {
+    $.ajax({
+        type: "POST",
+        url: "article/delete",
+        data: {
+            id: id,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
+function findOwnArticle(){
+    let title = $("#title").val().trim();
+    let category = $("#category").val().trim();
+    let href = window.location.href;
+    if (title === "" && category === ""){
+        href = href.split("/")[0] + "/all-article";
+    }else{
+        href = href.split("/")[0] + "/findOwnArticles?title=" + title + "&category=" + category;
+    }
+    reloadToGO(href);
 }

@@ -52,6 +52,7 @@
                                                     <label>文章标题</label>
                                                     <input id="title" th:value="${article.title}" type="text"/>
                                                     <input style="display: none" id="id" th:value="${article.id}" type="text"/>
+                                                    <input style="display: none" id="userId" th:value="${session.loginUser.id}" type="text"/>
                                                 </div>
 
                                                 <div class="form-group">
