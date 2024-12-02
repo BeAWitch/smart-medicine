@@ -5,6 +5,8 @@ target/
 src/main/resources/static/patient-friends
 src/main/resources/static/ocr
 
+/.idea
+
 ### VS Code ###
 .vscode/
 /.idea

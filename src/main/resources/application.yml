@@ -1,5 +1,3 @@
-
-
 spring:
   mvc:
     pathmatch:
@@ -21,8 +19,8 @@ spring:
     time-zone: GMT+8
   # 邮件配置
   mail:
-    username: 
-    password: 
+    username: xxxxxxxxxx
+    password: xxxxxxxxx
     host: smtp.qq.com
     port: 465
     properties:
@@ -52,11 +50,16 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 阿里云通义千问配置
-ai-key: 
+ai-key: sk-xxx
 # 阿里云对象存储配置
 oss:
-  bucket-name: 
-  end-point: 
-  access-key: 
-  access-secret: 
+  bucket-name: xxxxxxx
+  end-point: xxxxxxxxxxxxxx
+  access-key: xxxxxxxxxxx
+  access-secret: xxxxxxxxxxx
 
+flask:
+  ocr:
+    baseurl: 'localhost:8081'
+  grass:
+    baseurl: 'localhost:13746'

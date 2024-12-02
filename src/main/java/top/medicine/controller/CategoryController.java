@@ -15,26 +15,5 @@ public class CategoryController extends BaseController<Category> {
         return RespResult.success();
     }
 
-    @GetMapping("/detail")
-    public RespResult detail(Integer id){
-        Category category = categoryService.get(id);
-        return RespResult.success("",category);
-    }
 
-    @PutMapping
-    public RespResult update(@RequestBody @Validated(Category.Update.class) Category category){
-        categoryService.save(category);
-        return RespResult.success();
-    }
-
-    @DeleteMapping
-    public RespResult delete(Integer id){
-        Category category = categoryService.get(id);
-        if (category == null){
-            return RespResult.fail("文章分类不存在");
-        }
-
-        categoryService.delete(id);
-        return RespResult.success();
-    }
 }

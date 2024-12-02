@@ -4,6 +4,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.groups.Default;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,6 +15,7 @@ import java.util.Date;
 @Data
 public class Article {
     @NotNull(groups = {Update.class})
+    @TableId(type = IdType.AUTO)
     private Integer id;//主键ID
 
     @NotEmpty

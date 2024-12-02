@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>添加文章</title>
+    <title>添加类别</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
 
@@ -35,7 +35,7 @@
         <div class="dashboard-main">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                    <div th:replace="common/common-bar::#forum-sidebar(cur='article')"></div>
+                    <div th:replace="common/common-bar::#forum-sidebar(cur='category')"></div>
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="dashboard-content">
@@ -44,43 +44,30 @@
 
                                 <div class="col-lg-12 col-md-12 col-xs-12 padding-right-30">
                                     <div class="dashboard-list">
-                                        <h4 class="gray">文章信息</h4>
+                                        <h4 class="gray">类别信息</h4>
                                         <div class="dashboard-list-static">
 
                                             <div class="my-profile">
                                                 <div class="form-group">
-                                                    <label>文章标题</label>
-                                                    <input id="title" th:value="${article.title}" type="text"/>
-                                                    <input style="display: none" id="id" th:value="${article.id}" type="text"/>
+                                                    <label>类别名</label>
+                                                    <input id="categoryName" th:value="${category.categoryName}" type="text"/>
+                                                    <input style="display: none" id="id" th:value="${category.id}" type="text"/>
                                                     <input style="display: none" id="userId" th:value="${session.loginUser.id}" type="text"/>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label>文章类别</label>
-                                                    <select id="category" class="form-select me-2" style="width: 200px;">
-                                                        <option th:if="${article.id != null and article.categoryId == category.id}" th:each="category: ${categories}" th:value="${category.id}" th:text="${category.categoryName}"> </option>
-                                                        <option th:each="category:${categories}" th:text="${category.categoryName}" th:value="${category.id}"></option>
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <label>正文</label>
-                                                    <textarea id="content" style="height: 100px" th:text="${article.content}"></textarea>
-                                                </div>
-
-                                                <div th:if="${article.createTime != null}" class="form-group">
+                                                <div th:if="${category.createTime != null}" class="form-group">
                                                     <label>创建时间</label>
-                                                    <input style="background: #ecf0f1" disabled type="text" th:value="${#dates.format(article.createTime, 'yyyy-MM-dd HH:mm:ss')}"/>
+                                                    <input style="background: #ecf0f1" disabled type="text" th:value="${#dates.format(category.createTime, 'yyyy-MM-dd HH:mm:ss')}"/>
                                                 </div>
 
-                                                <div th:if="${article.updateTime != null}" class="form-group">
+                                                <div th:if="${category.updateTime != null}" class="form-group">
                                                     <label>修改时间</label>
-                                                    <input style="background: #ecf0f1" disabled type="text" th:value="${#dates.format(article.updateTime, 'yyyy-MM-dd HH:mm:ss')}"/>
+                                                    <input style="background: #ecf0f1" disabled type="text" th:value="${#dates.format(category.updateTime, 'yyyy-MM-dd HH:mm:ss')}"/>
                                                 </div>
 
                                             </div>
                                             <div>
-                                                <button class="btn btn-na" onclick="saveArticle()">保存</button>
+                                                <button class="btn btn-na" onclick="saveCategory()">保存</button>
                                             </div>
                                         </div>
                                     </div>

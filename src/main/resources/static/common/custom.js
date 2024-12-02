@@ -517,6 +517,7 @@ function findArticle(){
 
 function saveArticle() {
     let id = $('#id').val();
+    let userId = $('#userId').val();
     let title = $('#title').val();
     let category = $('#category').val();
     let content = $('#content').val();
@@ -527,8 +528,89 @@ function saveArticle() {
         data: {
             id: id,
             title: title,
-            category: category,
+            categoryId: category,
             content: content,
+            createUser: userId,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
+function deleteArticle(id) {
+    $.ajax({
+        type: "POST",
+        url: "article/delete",
+        data: {
+            id: id,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
+function findOwnArticle(){
+    let title = $("#title").val().trim();
+    let category = $("#category").val().trim();
+    let href = window.location.href;
+    if (title === "" && category === ""){
+        href = href.split("/")[0] + "/all-article";
+    }else{
+        href = href.split("/")[0] + "/findOwnArticles?title=" + title + "&category=" + category;
+    }
+    reloadToGO(href);
+}
+
+function findCategory(){
+    let categoryName = $("#categoryName").val().trim();
+    let href = window.location.href;
+    if (categoryName === ""){
+        href = href.split("/")[0] + "/all-category";
+    }else{
+        href = href.split("/")[0] + "/findCategories?categoryName=" + categoryName;
+    }
+    reloadToGO(href);
+}
+
+function saveCategory() {
+    let id = $('#id').val();
+    let categoryName = $("#categoryName").val().trim();
+    let userId = $('#userId').val();
+
+    $.ajax({
+        type: "POST",
+        url: "category/save",
+        data: {
+            id: id,
+            categoryName: categoryName,
+            createUser: userId,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
+function deleteCategory(id) {
+    $.ajax({
+        type: "POST",
+        url: "category/delete",
+        data: {
+            id: id,
         },
         dataType: "json",
         success: function (data) {
