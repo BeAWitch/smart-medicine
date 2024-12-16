@@ -184,7 +184,7 @@ img {
 }
 
 .btn::after {
-    content: "\f301";
+    content: none;
     font-family: Material-Design-Iconic-Font;
     position: relative;
     top: 2px;

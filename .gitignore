@@ -4,6 +4,7 @@ target/
 !**/src/mainsrc/testsrc/mainsrc/test/**/build/
 src/main/resources/static/patient-friends
 src/main/resources/static/ocr
+src/test
 
 /.idea
 

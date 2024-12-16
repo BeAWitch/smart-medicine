@@ -621,3 +621,24 @@ function deleteCategory(id) {
         }
     });
 }
+
+function identify() {
+    var formData = new FormData();
+    formData.append("file", $("#upload-input").get(0).files[0]);
+    $.ajax({
+        async: false,
+        type: "POST",
+        url: "/service/identify",
+        dataType: "json",
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            console.log(data);
+            $("#result-display").html(`<p><strong>识别结果:</strong> ${data['message']}</p>`);
+        },
+        error: function() {
+            $('#result-display').html('<p>识别接口调用失败，请检查网络或联系管理员。</p>');
+        }
+    });
+}

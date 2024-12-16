@@ -59,7 +59,5 @@ oss:
   access-secret: xxxxxxxxxxx
 
 flask:
-  ocr:
-    baseurl: 'localhost:8081'
-  grass:
-    baseurl: 'localhost:13746'
+  identification:
+    baseurl: 'localhost:5000'
