@@ -63,23 +63,6 @@ public class SystemController extends BaseController<User> {
         return "videoSupport";
     }
 
-/*    @GetMapping("/bigData")
-    public String bigData(Map<String, Object> map) {
-        if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }
-        return "bigData";
-    }*/
-
-    @GetMapping("/identification")
-    public String identification(Map<String, Object> map) {
-        /*if (Assert.isEmpty(loginUser)) {
-            response.sendRedirect("/");
-            return;
-        }*/
-        return "all-article";
-    }
-
     @SneakyThrows
     @ResponseBody
     @GetMapping("/patient-friends")
@@ -90,17 +73,6 @@ public class SystemController extends BaseController<User> {
         }
         response.sendRedirect("patient-friends/index.html");
     }
-
-/*    @SneakyThrows
-    @ResponseBody
-    @GetMapping("/ocr")
-    public void ocr(HttpServletResponse response) {
-        if (Assert.isEmpty(loginUser)) {
-            response.sendRedirect("/");
-            return;
-        }
-        response.sendRedirect("ocr/index.html");
-    }*/
 
     @GetMapping("/logout")
     public String logout() {
@@ -448,5 +420,10 @@ public class SystemController extends BaseController<User> {
 
         map.put("category", category);
         return "add-category";
+    }
+
+    @GetMapping("identification")
+    public String identification() {
+        return "identification";
     }
 }
