@@ -50,7 +50,7 @@
                         <div class="banner-detail pb-2">
                             <p>The best healthcare and self diagnostic health center</p>
                         </div>
-                        <a href="login" class="btn">登录/注册</a>
+                        <a href="login" class="btn" th:if="${session.loginUser == null}">登录/注册</a>
                     </div>
                 </div>
             </div>

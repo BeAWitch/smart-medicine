@@ -44,18 +44,6 @@ public abstract class BaseService<T> implements IService<T> {
     protected VideoDao videoDao;
 
     @Autowired
-    protected ChannelDao channelDao;
-
-    @Autowired
-    protected PostDao postDao;
-
-    @Autowired
-    protected PostReplyDao postReplyDao;
-
-    @Autowired
-    protected ChannelHistoryDao channelHistoryDao;
-
-    @Autowired
     protected ArticleDao articleDao;
 
     @Autowired

@@ -245,21 +245,6 @@ public class SystemController extends BaseController<User> {
         return "add-video";
     }
 
-    @GetMapping("add-channel")
-    public String addChannel(Integer id, Map<String, Object> map) {
-        if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }
-//        List<Channel> videos = channelService.all();
-        Channel video = new Channel();
-        if (Assert.notEmpty(id)) {
-            video = channelService.get(id);
-        }
-        map.put("channel", video);
-        return "add-channel";
-    }
-
-
     @GetMapping("all-illness")
     public String allIllness(Map<String, Object> map) {
         if (Assert.isEmpty(loginUser)) {
@@ -293,17 +278,6 @@ public class SystemController extends BaseController<User> {
         List<Video> medicines = videoService.all();
         map.put("videos", medicines);
         return "all-video";
-    }
-
-
-    @GetMapping("all-channel")
-    public String allChannel(Map<String, Object> map) {
-        if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }
-        List<Channel> medicines = channelService.all();
-        map.put("channels", medicines);
-        return "all-channel";
     }
 
     @GetMapping("all-article")
