@@ -21,11 +21,17 @@
                     <div class="navbar-collapse1" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav" id="responsive-menu">
                             <li><a href="findIllness">疾病百科</a></li>
-                            <li><a href="findMedicines">查找药品</a></li>
+                            <li><a href="findMedicines">药品大全</a></li>
                             <li><a href="doctor">智能医生</a></li>
                             <li><a href="videoSupport">科普视频</a></li>
                             <li><a href="identification">中草药识别</a></li>
                             <li><a href="all-article">病友交流</a></li>
+                            <li th:if="${session.loginUser!= null && session.loginUser.roleStatus!= null && (session.loginUser.roleStatus eq 0 || session.loginUser.roleStatus eq 1)}" th:class="${cur == 'userManagement'? 'active': ''}">
+                                <a href="all-user"><i class="sl sl-icon-user-settings"></i> 用户管理</a>
+                            </li>
+                            <li th:if="${session.loginUser!= null && session.loginUser.roleStatus!= null && (session.loginUser.roleStatus eq 0 || session.loginUser.roleStatus eq 2)}" th:class="${cur == 'informationManagement'? 'active': ''}">
+                                <a href="all-illness"> 信息管理</a>
+                            </li>
                         </ul>
                     </div>
                     <div th:if="${session.loginUser == null}" class="register-login">
@@ -45,7 +51,7 @@
                         <div class="dropdown">
                             <button class="btn-dash dropdown-toggle" type="button" id="dropdownMenuButton11"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user-circle"></i> 欢迎你【 [[${session.loginUser.userName}]] 】
+                                <i class="fa fa-user-circle"></i> 欢迎你 [[${session.loginUser.userName}]]
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton11">
                                 <a class="dropdown-item" href="profile"><i class="sl sl-icon-user"></i> 我的资料</a>
@@ -163,58 +169,26 @@
 </div>
 
 <div id="dashboard-sidebar" class="dashboard-sidebar">
-    <div class="profile-sec">
-        <div class="author-news mb-3">
-            <div class="author-news-content text-center p-3">
-                <div class="author-thumb mt-0">
-                    <img th:src="${session.loginUser.imgPath}" alt="author"/>
-                </div>
-                <div class="author-content pt-2 p-0">
-                    <h3 class="mb-1" th:text="${session.loginUser.userName}"></h3>
-                    <p class="detail"><i class="fa fa-phone"></i> [[${session.loginUser.userTel}]]</p>
-                    <p class="detail"><i class="fa fa-envelope-o"></i> [[${session.loginUser.userEmail}]]</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard
-        Navigation</a>
+    <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
     <div class="dashboard-nav">
         <div class="dashboard-nav-inner">
             <ul>
-                <li th:class="${cur == 'profile' ? 'active': ''}">
-                    <a href="profile"><i class="sl sl-icon-user"></i> 我的资料</a>
-                </li>
-                <li th:class="${cur == 'doctor' ? 'active': ''}">
-                    <a href="doctor"><i class="sl sl-icon-envelope-open"></i>智能医生</a>
-                </li>
-                <li th:if="${session.loginUser.roleStatus eq 1}" th:class="${cur == 'illness' ? 'active': ''}">
+                <li>
                     <a href="all-illness"><i class="sl sl-icon-layers"></i> 疾病管理</a>
                 </li>
-                <li th:if="${session.loginUser.roleStatus eq 1}" th:class="${cur == 'medicine' ? 'active': ''}">
+                <li>
                     <a href="all-medical"><i class="sl sl-icon-layers"></i> 药品管理</a>
                 </li>
-
-                <li th:if="${session.loginUser.roleStatus eq 1}" th:class="${cur == 'videos' ? 'active': ''}">
+                <li>
                     <a href="all-video"><i class="sl sl-icon-layers"></i> 科普视频管理</a>
                 </li>
-
-                <li th:if="${session.loginUser.roleStatus eq 1}" th:class="${cur == 'channels' ? 'active': ''}">
-                    <a href="all-channel"><i class="sl sl-icon-layers"></i> 频道管理</a>
-                </li>
-
-                <li th:if="${session.loginUser.roleStatus eq 1}" th:class="${cur == 'feedback' ? 'active': ''}">
-                    <a href="all-feedback"><i class="sl sl-icon-layers"></i> 反馈管理</a>
-                </li>
                 <li>
-                    <a href="logout"><i class="sl sl-icon-power"></i> 退出登录</a>
+                    <a href="all-feedback"><i class="sl sl-icon-layers"></i> 反馈管理</a>
                 </li>
             </ul>
         </div>
     </div>
 </div>
-
 <div id="forum-sidebar" class="dashboard-sidebar">
     <div class="profile-sec">
         <div class="author-news mb-3">

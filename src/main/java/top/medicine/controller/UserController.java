@@ -26,12 +26,14 @@ public class UserController extends BaseController<User> {
                     @Parameter(name = "user", description = "用户对象"),
             })
     @PostMapping("/saveProfile")
-    public RespResult saveProfile(User user) {
+    public RespResult saveProfile(User user, @RequestParam(defaultValue = "false") boolean isLoginUserUpdate) {
         if (Assert.isEmpty(user)) {
             return RespResult.fail("保存对象不能为空");
         }
         user = userService.save(user);
-        session.setAttribute("loginUser", user);
+        if (isLoginUserUpdate) {
+            session.setAttribute("loginUser", user);
+        }
         return RespResult.success("保存成功");
     }
 

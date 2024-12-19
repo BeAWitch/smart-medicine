@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 
+
 @Controller
 public class SystemController extends BaseController<User> {
 
@@ -245,20 +246,6 @@ public class SystemController extends BaseController<User> {
         return "add-video";
     }
 
-    @GetMapping("add-channel")
-    public String addChannel(Integer id, Map<String, Object> map) {
-        if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }
-//        List<Channel> videos = channelService.all();
-        Channel video = new Channel();
-        if (Assert.notEmpty(id)) {
-            video = channelService.get(id);
-        }
-        map.put("channel", video);
-        return "add-channel";
-    }
-
 
     @GetMapping("all-illness")
     public String allIllness(Map<String, Object> map) {
@@ -295,16 +282,6 @@ public class SystemController extends BaseController<User> {
         return "all-video";
     }
 
-
-    @GetMapping("all-channel")
-    public String allChannel(Map<String, Object> map) {
-        if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }
-        List<Channel> medicines = channelService.all();
-        map.put("channels", medicines);
-        return "all-channel";
-    }
 
     @GetMapping("all-article")
     public String allArticle(Map<String, Object> map) {
@@ -426,4 +403,33 @@ public class SystemController extends BaseController<User> {
     public String identification() {
         return "identification";
     }
+
+    @GetMapping("all-user")
+    public String allUser(Map<String, Object> map) {
+        if (Assert.isEmpty(loginUser)) {
+            return "redirect:/index.html";
+        }
+        List<User> users = userService.all();
+        map.put("users", users);
+        return "all-user";
+    }
+
+    @GetMapping("add-user")
+    public String addUser(Integer id, Map<String, Object> map) {
+        if (Assert.isEmpty(loginUser)) {
+            return "redirect:/index.html";
+        }
+
+        User user = new User();
+
+        if (Assert.notEmpty(id)) {
+            user = userService.get(id);
+        }
+
+        map.put("user", user);
+
+        return "add-user";
+    }
 }
+
+

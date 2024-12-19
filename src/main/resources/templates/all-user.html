@@ -1,10 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>MeowMedicine - 用户信息</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
+    <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
 </head>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <body>
-1
+
+<div id="preloader">
+    <div id="status"></div>
+</div>
+
+<div th:replace="common/common-bar::#header"></div>
+
+<div id="dashboard">
+    <div class="container">
+        <div class="dashboard-main">
+            <div class="row">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                    <div class="dashboard-content">
+                        <div class="row mb-4">
+                            <div class="col-lg-12 col-md-12 col-xs-12">
+                                <div class="dashboard-list-box with-icons">
+                                    <div class="dashboard-title">
+                                        <h4 class="mb-0">全部用户</h4>
+                                        <p class="mb-0">共收集 [[${users.size()}]] 条用户信息。你可以继续 <a href="/add-user">新增用户</a>。
+                                        </p>
+                                    </div>
+                                    <div class="table-responsive table-desi">
+                                        <table class="basic-table table table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>账号</th>
+                                                <th>用户名</th>
+                                                <th>性别</th>
+                                                <th>密码</th>
+                                                <th>角色</th>
+                                                <th>更新时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="user:${users}">
+                                                <td th:text="${user.userAccount}"></td>
+                                                <td th:text="${user.userName}"></td>
+                                                <td th:text="${user.userSex}"></td>
+                                                <td>
+                                                    <th:block th:if="${session.loginUser.roleStatus == 0}">
+                                                        <th:block th:text="${user.userPwd}"></th:block>
+                                                    </th:block>
+                                                    <th:block th:if="${session.loginUser.roleStatus <= 2 and user.roleStatus == 3}">
+                                                        <th:block th:text="${user.userPwd}"></th:block>
+                                                    </th:block>
+                                                    <th:block th:unless="${session.loginUser.roleStatus == 0 or (session.loginUser.roleStatus <= 2 and user.roleStatus == 3)}">
+                                                        无权限查看
+                                                    </th:block>
+                                                </td>
+                                                <td th:text="${user.roleStatus == 0? '超级用户' : (user.roleStatus == 1? '系统管理员' : (user.roleStatus == 2? '信息管理员' : '普通用户'))}"></td>
+                                                <td th:text="${#dates.format(user.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                <td>
+                                                    <!-- 显示无权限文本 -->
+                                                    <span th:if="${not (session.loginUser.roleStatus == 0 || (session.loginUser.roleStatus >= 1 && session.loginUser.roleStatus <= 2 && user.roleStatus == 3))}">无权限</span>
+                                                    <!-- 显示编辑和删除图标 -->
+                                                    <a th:href="@{add-user(id=${user.id})}" th:if="${session.loginUser.roleStatus == 0 || (session.loginUser.roleStatus >= 1 && session.loginUser.roleStatus <= 2 && user.roleStatus == 3)}"><i class="fa fa-pencil-square-o text-primary" aria-hidden="true"></i></a>
+                                                    <a th:onclick="deleteUser([[${user.id}]])" href="javascript:void(0)" th:if="${session.loginUser.roleStatus == 0 || (session.loginUser.roleStatus >= 1 && session.loginUser.roleStatus <= 2 && user.roleStatus == 3)}"><i class="fa fa-trash-o text-danger" aria-hidden="true"></i></a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/common-bar::#back"></div>
+
+<div th:replace="common/common-bar::#footer"></div>
+
+<div th:replace="common/common-bar::#search"></div>
+
+<div th:replace="common/common-bar::#back-to-top"></div>
+
+<script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/plugin.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/custom-nav.js"></script>
+<script src="assets/js/jpanelmenu.min.js"></script>
+<script src="assets/js/dashboard-custom.js"></script>
+<script src="common/utils/reg.js"></script>
+<script src="common/layer/layer.js"></script>
+<script src="common/custom.js"></script>
 </body>
+
 </html>

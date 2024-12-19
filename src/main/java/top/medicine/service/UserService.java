@@ -67,4 +67,16 @@ public class UserService extends BaseService<User> {
         }
         return integerStringMap;
     }
+
+
+    public Map<String, Object> findUserOne(Integer id) {
+        Map<String, Object> map = new HashMap<>(4);
+
+        // 查询单个用户基本信息
+        User user = userDao.selectOne(new QueryWrapper<User>().eq("id", id));
+        map.put("user", user);
+
+
+        return map;
+    }
 }

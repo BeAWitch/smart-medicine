@@ -1,33 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MeowMedicine - Template</title>
+    <title>用户信息页面 - Template</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
 
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
     <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-
     <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
-
     <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
-
     <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
-
     <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
-
     <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
     <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
 </head>
+
 <body>
 
 <div id="preloader">
     <div id="status"></div>
 </div>
-
 
 <div th:replace="common/common-bar::#header"></div>
 
@@ -42,38 +37,33 @@
 
                                 <div class="col-lg-12 col-md-12 col-xs-12 padding-right-30">
                                     <div class="dashboard-list">
-                                        <h4 class="gray">我的资料</h4>
+                                        <h4 class="gray">用户信息</h4>
                                         <div class="dashboard-list-static">
 
                                             <div class="edit-profile-photo">
-                                                <img id="img-preview" th:src="${session.loginUser.imgPath}" alt=""/>
+                                                <img id="img-preview" th:src="${user.imgPath}" alt=""/>
                                                 <div class="change-photo-btn">
                                                     <div class="photoUpload">
                                                         <span><i class="fa fa-upload"></i> 点击上传</span>
                                                         <input id="img-file" type="file" class="upload" onchange="uploadPhoto()"/>
-                                                        <input style="display: none" id="img" th:value="${session.loginUser.imgPath}" type="text"/>
+                                                        <input style="display: none" id="img" th:value="${user.imgPath}" type="text"/>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="my-profile">
                                                 <div class="row">
+                                                    <input type="hidden" id="userId" name="id" th:value="${user.id}">
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <label>账户名称</label>
-                                                            <input style="background: #ecf0f1" disabled
-                                                                   th:value="${session.loginUser.userAccount}"
-                                                                   type="text"/>
-                                                            <input id="userId" style="display: none"
-                                                                   th:value="${session.loginUser.id}" type="text"/>
+                                                            <label>账号</label>
+                                                            <input id="userAccount" th:value="${user.userAccount}" type="text"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
-                                                            <label>真实姓名</label>
-                                                            <input id="userName"
-                                                                   th:value="${session.loginUser.userName}"
-                                                                   type="text"/>
+                                                            <label>用户名</label>
+                                                            <input id="userName" th:value="${user.userName}" type="text"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -83,19 +73,16 @@
                                                         <div class="form-group">
                                                             <label>性别</label>
                                                             <select id="userSex" class="niceSelect">
-                                                                <option th:selected="${session.loginUser.userSex == '男'}" value="男">男</option>
-                                                                <option th:selected="${session.loginUser.userSex == '女'}" value="女">女</option>
-                                                                <option th:selected="${session.loginUser.userSex == null}" value="未设置">未设置</option>
+                                                                <option th:selected="${user.userSex == '男'}" value="男">男</option>
+                                                                <option th:selected="${user.userSex == '女'}" value="女">女</option>
+                                                                <option th:selected="${user.userSex == null}" value="未设置">未设置</option>
                                                             </select>
-                                                            <!--                                                            <input disabled style="background: #ecf0f1"-->
-                                                            <!--                                                                   th:value="${session.loginUser.userSex}" type="text"/>-->
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>年龄</label>
-                                                            <input id="userAge" th:value="${session.loginUser.userAge}"
-                                                                   type="number"/>
+                                                            <input id="userAge" th:value="${user.userAge}" type="number"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -104,16 +91,33 @@
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>邮箱</label>
-                                                            <input style="background: #ecf0f1" disabled
-                                                                   th:value="${session.loginUser.userEmail}"
-                                                                   type="text"/>
+                                                            <input id="userEmail" th:value="${user.userEmail}" type="email"/>
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
                                                         <div class="form-group">
                                                             <label>手机号</label>
-                                                            <input id="userTel" th:value="${session.loginUser.userTel}"
-                                                                   type="number"/>
+                                                            <input id="userTel" th:value="${user.userTel}" type="text"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>角色</label>
+                                                            <select id="roleStatus" class="niceSelect">
+                                                                <option th:selected="${user.roleStatus == 0}" value="0">超级用户</option>
+                                                                <option th:selected="${user.roleStatus == 1}" value="1">系统管理员</option>
+                                                                <option th:selected="${user.roleStatus == 2}" value="2">信息管理员</option>
+                                                                <option th:selected="${user.roleStatus == 3}" value="3">普通用户</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <div class="form-group">
+                                                            <label>密码</label>
+                                                            <input id="password" th:value="${user.userPwd}" type="password"/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -121,44 +125,21 @@
                                                 <div class="form-group">
                                                     <label>注册时间</label>
                                                     <input style="background: #ecf0f1" disabled
-                                                           th:value="${#dates.format(session.loginUser.createTime, 'yyyy年MM月dd日 HH:mm:ss')}"
+                                                           th:value="${#dates.format(user.createTime, 'yyyy年MM月dd日 HH:mm:ss')}"
+                                                           type="text"/>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>更新时间</label>
+                                                    <input style="background: #ecf0f1" disabled
+                                                           th:value="${#dates.format(user.updateTime, 'yyyy年MM月dd日 HH:mm:ss')}"
                                                            type="text"/>
                                                 </div>
 
                                             </div>
                                             <div>
-                                                <button class="btn btn-na" onclick="updateProfile()">保存修改</button>
+                                                <button class="btn btn-na" onclick="manageProfile()">保存修改</button>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="dashboard-form mb-4">
-                            <div class="dashboard-password">
-                                <h4>修改登录密码</h4>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label>当前密码</label>
-                                            <input id="oldPassword" type="password" placeholder=""/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label>新密码</label>
-                                            <input id="password1" type="password"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <label>确认密码</label>
-                                            <input id="password2" type="password"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <div class="mt-2">
-                                            <button onclick="updatePassword()" class="btn btn-na">修改密码</button>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +149,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -191,5 +171,5 @@
 <script src="common/layer/layer.js"></script>
 <script src="common/custom.js"></script>
 </body>
-</html>
 
+</html>
