@@ -56,11 +56,11 @@ public class BaseController<T> {
     @Autowired
     protected EmailClient emailClient;
 
-    protected HttpServletRequest request;
-    protected HttpServletResponse response;
+    /*protected HttpServletRequest request;
+    protected HttpServletResponse response;*/
     protected HttpSession session;
     protected User loginUser;
-    protected List<IllnessKind> kindList;
+    //protected List<IllnessKind> kindList;
 
 
     @Operation(summary = "保存",
@@ -102,8 +102,8 @@ public class BaseController<T> {
     
     @ModelAttribute
     public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
-        this.request = request;
-        this.response = response;
+        /*this.request = request;
+        this.response = response;*/
         this.session = request.getSession(true);
         loginUser = (User) session.getAttribute("loginUser");
         session.setAttribute("kindList", illnessKindService.findList());

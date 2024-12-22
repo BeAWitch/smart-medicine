@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MeowMedicine - Template</title>
+    <title>智慧医药系统 - 药品详情</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -22,10 +22,6 @@
     <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-
-<div id="preloader">
-    <div id="status"></div>
-</div>
 
 <div th:replace="common/common-bar::#header"></div>
 
@@ -57,15 +53,6 @@
                     <h4>适应症：</h4>
                     <p th:text="${medicine.medicineEffect}">
                     </p>
-                    <!--<ul class="d-flex flex-wrap">
-                        <li class="w-50"><i class="fas fa-angle-double-right cl-green"></i> Professional Doctors</li>
-                        <li class="w-50"><i class="fas fa-angle-double-right cl-green"></i>24/7 Online Support</li>
-                        <li class="w-50"><i class="fas fa-angle-double-right cl-green"></i>Digital Laboratory</li>
-                        <li class="w-50"><i class="fas fa-angle-double-right cl-green"></i>High Packages</li>
-                        <li class="w-50 border-lg-0"><i class="fas fa-angle-double-right cl-green"></i>Online Schedule
-                        </li>
-                        <li class="w-50 border-lg-0"><i class="fas fa-angle-double-right cl-green"></i>And More...</li>
-                    </ul>-->
                 </div>
             </div>
         </div>
@@ -107,8 +94,6 @@
 <div th:replace="common/common-bar::#back"></div>
 
 <div th:replace="common/common-bar::#footer"></div>
-
-<div th:replace="common/common-bar::#search"></div>
 
 <div th:replace="common/common-bar::#back-to-top"></div>
 

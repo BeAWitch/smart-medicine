@@ -10,8 +10,4 @@ import java.util.Map;
 
 @Repository
 public interface MedicineDao extends BaseMapper<Medicine> {
-
-    
-    List<Map<String, Object>> findMedicineList(Integer illnessId);
-
 }
