@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 
+
 @Controller
 public class SystemController extends BaseController<User> {
 
@@ -400,4 +401,33 @@ public class SystemController extends BaseController<User> {
     public String identification() {
         return "identification";
     }
+
+    @GetMapping("all-user")
+    public String allUser(Map<String, Object> map) {
+        if (Assert.isEmpty(loginUser)) {
+            return "redirect:/index.html";
+        }
+        List<User> users = userService.all();
+        map.put("users", users);
+        return "all-user";
+    }
+
+    @GetMapping("add-user")
+    public String addUser(Integer id, Map<String, Object> map) {
+        if (Assert.isEmpty(loginUser)) {
+            return "redirect:/index.html";
+        }
+
+        User user = new User();
+
+        if (Assert.notEmpty(id)) {
+            user = userService.get(id);
+        }
+
+        map.put("user", user);
+
+        return "add-user";
+    }
 }
+
+

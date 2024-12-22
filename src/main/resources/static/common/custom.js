@@ -123,7 +123,55 @@ function updateProfile() {
             userAge: userAge,
             imgPath: imgPath,
             userSex: userSex,
+            isLoginUserUpdate: true
         },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
+function manageProfile() {
+
+    let id = $('#userId').val();
+    let userName = $('#userName').val();
+    let userTel = $('#userTel').val();
+    let userAge = $('#userAge').val();
+    let imgPath = $('#img').val();
+    let userSex = $('#userSex').val();
+    let userEmail = $('#userEmail').val();
+    let roleStatus = $('#roleStatus').val();
+    let userAccount = $('#userAccount').val();
+    let password = $('#password').val();
+
+    if (!userName ||!userTel ||!userAge || (!userSex && userSex!== undefined) ||!userEmail || roleStatus === undefined ||!userAccount) {
+        layer.msg("请完整填写信息");
+        return;
+    }
+
+    let dataToSend = {
+        id: id,
+        userName: userName,
+        userTel: userTel,
+        userAge: userAge,
+        imgPath: imgPath,
+        userSex: userSex,
+        userEmail: userEmail,
+        roleStatus: roleStatus,
+        userAccount: userAccount,
+        userPwd: password,
+        isLoginUserUpdate: false
+    };
+
+
+    $.ajax({
+        type: "POST",
+        url: "user/saveProfile",
+        data: dataToSend,
         dataType: "json",
         success: function (data) {
             layer.msg(data['message']);
@@ -326,6 +374,37 @@ function saveMedicine() {
     });
 }
 
+function saveUser() {
+    let id = $('#id').val();
+    let userAccount = $('#userAccount').val();
+    let userName = $('#userName').val();
+    let userPwd = $('#userPwd').val();
+    let userEmail = $('#userEmail').val();
+    let userTel = $('#userTel').val();
+    let roleStatus = $('#roleStatus').find("option:selected").val();
+
+    $.ajax({
+        type: "POST",
+        url: "user/save",
+        data: {
+            id: id,
+            userAccount: userAccount,
+            userName: userName,
+            userPwd: userPwd,
+            userEmail: userEmail,
+            userTel: userTel,
+            roleStatus: roleStatus,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
+
 
 function deleteIllness(id) {
     $.ajax({
@@ -362,6 +441,22 @@ function deleteMedicine(id) {
     });
 }
 
+function deleteUser(id) {
+    $.ajax({
+        type: "POST",
+        url: "user/delete",
+        data: {
+            id: id,
+        },
+        dataType: "json",
+        success: function (data) {
+            layer.msg(data['message']);
+            if (data['code'] === 'SUCCESS') {
+                setTimeout('reloadPage()', 2000);
+            }
+        }
+    });
+}
 
 function saveIllnessMedicine(illnessId, medicineId) {
     $.ajax({

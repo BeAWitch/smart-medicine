@@ -11,4 +11,5 @@ public class MedicalConstants {
 
     
     public static final Integer TYPE_MEDICINE = 3;
+    public static final Integer TYPE_USER = 3;
 }
