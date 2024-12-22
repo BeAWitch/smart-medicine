@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>用户信息页面 - Template</title>
+    <title>智慧医药系统 - 添加用户</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
 
@@ -19,10 +19,6 @@
 </head>
 
 <body>
-
-<div id="preloader">
-    <div id="status"></div>
-</div>
 
 <div th:replace="common/common-bar::#header"></div>
 
@@ -44,7 +40,7 @@
                                                 <img id="img-preview" th:src="${user.imgPath}" alt=""/>
                                                 <div class="change-photo-btn">
                                                     <div class="photoUpload">
-                                                        <span><i class="fa fa-upload"></i> 点击上传</span>
+                                                        <span><i class="fa fa-upload"></i> 点击上传头像</span>
                                                         <input id="img-file" type="file" class="upload" onchange="uploadPhoto()"/>
                                                         <input style="display: none" id="img" th:value="${user.imgPath}" type="text"/>
                                                     </div>
@@ -155,8 +151,6 @@
 <div th:replace="common/common-bar::#back"></div>
 
 <div th:replace="common/common-bar::#footer"></div>
-
-<div th:replace="common/common-bar::#search"></div>
 
 <div th:replace="common/common-bar::#back-to-top"></div>
 

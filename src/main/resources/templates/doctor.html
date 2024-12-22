@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MeowMedicine - Template</title>
+    <title>智慧医药系统 - 智能医生</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
 
@@ -24,11 +24,6 @@
 </head>
 <body>
 
-<div id="preloader">
-    <div id="status"></div>
-</div>
-
-
 <div th:replace="common/common-bar::#header"></div>
 
 <div id="dashboard">
@@ -36,7 +31,18 @@
         <div class="dashboard-main">
             <div class="row">
                 <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-                    <div th:replace="common/common-bar::#dashboard-sidebar(cur='doctor')"></div>
+                    <div id="dashboard-sidebar" class="dashboard-sidebar">
+                        <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
+                        <div class="dashboard-nav">
+                            <div class="dashboard-nav-inner">
+                                <ul>
+                                    <li>
+                                        <a href="doctor"><i class="sl sl-icon-layers"></i> 智能医生</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
                     <div class="dashboard-content">
@@ -85,8 +91,6 @@
 <div th:replace="common/common-bar::#back"></div>
 
 <div th:replace="common/common-bar::#footer"></div>
-
-<div th:replace="common/common-bar::#search"></div>
 
 <div th:replace="common/common-bar::#back-to-top"></div>
 

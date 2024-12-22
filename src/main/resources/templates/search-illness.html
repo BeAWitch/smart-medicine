@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MeowMedicine - Template</title>
+    <title>智慧医药系统 - 疾病查询</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -39,7 +39,7 @@
                 <div class="search-list-wp bg-white">
                     <div class="p-4" style="height: 250px">
                         <h5 class="mb-3">
-                            <a th:href="@{findIllnessOne(id=${illnessOne.id})}" class="cl-blue" th:text="${illnessOne.illness_name}"> Great Services Provided to Help You Take
+                            <a th:href="@{findIllnessOne(id=${illnessOne.id})}" class="cl-blue" th:text="${illnessOne.illness_name}">
                                 Control </a>
                         </h5>
                         <p th:text="${illnessOne.include_reason}">
@@ -105,8 +105,6 @@
 <div th:replace="common/common-bar::#back"></div>
 
 <div th:replace="common/common-bar::#footer"></div>
-
-<div th:replace="common/common-bar::#search"></div>
 
 <div th:replace="common/common-bar::#back-to-top"></div>
 

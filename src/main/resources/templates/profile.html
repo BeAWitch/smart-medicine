@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>MeowMedicine - Template</title>
+    <title>智慧医药系统 - 个人资料</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
 
@@ -23,11 +23,6 @@
     <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
-
-<div id="preloader">
-    <div id="status"></div>
-</div>
-
 
 <div th:replace="common/common-bar::#header"></div>
 
@@ -49,7 +44,7 @@
                                                 <img id="img-preview" th:src="${session.loginUser.imgPath}" alt=""/>
                                                 <div class="change-photo-btn">
                                                     <div class="photoUpload">
-                                                        <span><i class="fa fa-upload"></i> 点击上传</span>
+                                                        <span><i class="fa fa-upload"></i> 点击上传头像</span>
                                                         <input id="img-file" type="file" class="upload" onchange="uploadPhoto()"/>
                                                         <input style="display: none" id="img" th:value="${session.loginUser.imgPath}" type="text"/>
                                                     </div>
@@ -87,8 +82,6 @@
                                                                 <option th:selected="${session.loginUser.userSex == '女'}" value="女">女</option>
                                                                 <option th:selected="${session.loginUser.userSex == null}" value="未设置">未设置</option>
                                                             </select>
-                                                            <!--                                                            <input disabled style="background: #ecf0f1"-->
-                                                            <!--                                                                   th:value="${session.loginUser.userSex}" type="text"/>-->
                                                         </div>
                                                     </div>
                                                     <div class="col-6">
@@ -175,8 +168,6 @@
 <div th:replace="common/common-bar::#back"></div>
 
 <div th:replace="common/common-bar::#footer"></div>
-
-<div th:replace="common/common-bar::#search"></div>
 
 <div th:replace="common/common-bar::#back-to-top"></div>
 

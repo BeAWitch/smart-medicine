@@ -3144,6 +3144,7 @@ a.close-list-item {
     position: relative;
     display: block;
     margin-bottom: 35px;
+    margin-top: 45px;
 }
 .change-photo-btn {
     font-weight: 600;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>中草药识别</title>
+    <title>智慧医药系统 - 中草药识别</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
@@ -23,10 +23,6 @@
     <script async src='/cdn-cgi/challenge-platform/h/g/scripts/invisible.js'></script>
 </head>
 <body>
-
-<div id="preloader">
-    <div id="status"></div>
-</div>
 
 <div th:replace="common/common-bar::#header"></div>
 
@@ -66,39 +62,9 @@
     </div>
 </div>
 
-<section class="search-list-sh p-0">
-    <div class="container">
-        <div class="search-again bg-white text-center mt-n3">
-            <div class="sc-title-two text-center mb-6">
-                <h4 class="cl-green">没有找到你想要的结果吗？</h4>
-                <h2>搜索一下</h2>
-            </div>
-            <div class="w-lg-75 m-auto">
-                <p>
-                    智慧医药您提供疾病查询,常见疾病大全,帮您全面了解疾病病因症状、检查治疗、饮食护理等信息,是您疾病查询的好帮手。
-                </p>
-                <div class="side-search position-relative overflow-hidden rounded-1 w-lg-50 m-auto mt-4">
-                    <input type="text" class="form-control" id="search-medicine" placeholder="搜索..."/>
-                    <a class="search-btn sh-hover bg-lgreen" onclick="searchMedicine()"><i class="fa fa-search"></i></a>
-                </div>
-                <div th:if="${history ne null}" style="margin-top: 10px">
-                    <span>搜索历史：</span>
-                    <a th:each="his:${history}" th:href="${his.operateType eq 3}?@{findMedicines(nameValue=${his.searchValue})}:@{findIllness(kind=${his.kind eq '无'}?null:${his.kind},illnessName=${his.nameValue eq '无'}?null:${his.nameValue})}">
-                        <span th:text="${his.operateType eq 3}?(${his.searchValue} + '(药)'):${his.searchValue}"></span>&nbsp;&nbsp;&nbsp;
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
 <div th:replace="common/common-bar::#back"></div>
 
 <div th:replace="common/common-bar::#footer"></div>
-
-<div th:replace="common/common-bar::#search"></div>
-
 
 <div th:replace="common/common-bar::#back-to-top"></div>
 
