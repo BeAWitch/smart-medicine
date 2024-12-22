@@ -246,7 +246,6 @@ public class SystemController extends BaseController<User> {
         return "add-video";
     }
 
-
     @GetMapping("all-illness")
     public String allIllness(Map<String, Object> map) {
         if (Assert.isEmpty(loginUser)) {
@@ -281,7 +280,6 @@ public class SystemController extends BaseController<User> {
         map.put("videos", medicines);
         return "all-video";
     }
-
 
     @GetMapping("all-article")
     public String allArticle(Map<String, Object> map) {

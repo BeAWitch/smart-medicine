@@ -48,16 +48,6 @@ public class BaseController<T> {
     protected BaseService<T> service;
 
     @Autowired
-    protected ChannelService channelService;
-    @Autowired
-    protected ChannelHistoryService channelHistoryService;
-
-    @Autowired
-    protected PostService postService;
-    @Autowired
-    protected PostReplyService postReplyService;
-
-    @Autowired
     protected ArticleService articleService;
 
     @Autowired
