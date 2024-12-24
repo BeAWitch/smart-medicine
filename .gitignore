@@ -5,7 +5,7 @@ target/
 src/main/resources/static/patient-friends
 src/main/resources/static/ocr
 src/test
-
+src/main/resources/application.yml
 /.idea
 
 ### VS Code ###

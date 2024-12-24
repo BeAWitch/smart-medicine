@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
-//没找到这玩意用途，先删了
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
