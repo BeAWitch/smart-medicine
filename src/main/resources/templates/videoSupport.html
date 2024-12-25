@@ -1,107 +1,140 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zxx" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>智慧医药系统 - 科普视频</title>
 
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png"/>
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css"/>
-
-    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css"/>
-
-    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
-
-    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css"/>
-
-    <link href="assets/css/icons.css" rel="stylesheet" type="text/css"/>
-
-    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css"/>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/cropped-favicon-32x32.png" />
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/plugin.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/dashboard.css" rel="stylesheet" type="text/css" />
+    <link href="assets/fonts/flaticon.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/icons.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css" />
     <link rel="stylesheet" href="common/font-awesome/css/font-awesome.min.css">
 
+    <style>
+        /* 整体布局相关样式调整 */
+        .nearMedicine_banner {
+            width: 100%;
+            min-height: 550px;
+            margin-top: 124px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .video_container {
+            width: 70%;
+            height: 400px;
+            /*background-color: #00d084;*/
+        }
+
+        .video_info_and_list_container {
+            width: 30%;
+            height: 490px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video_info_above_list {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgba(240, 240, 240, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+
+        .video_info_above_list h2 {
+            font-size: 14px;
+        }
+
+        .video_info_above_list div {
+            font-size: 12px;
+        }
+
+        .video_list {
+            width: 100%;
+            max-height: none;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .video_list > ul {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .video_list span {
+            line-height: 30px;
+            font-size: 16px;
+        }
+
+        .video_item {
+            width: 100%;
+            height: 70px;
+            color: black;
+            text-align: left;
+            /* 去掉圆角 */
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            /* 去掉底部间隔 */
+            margin-bottom: 0;
+            padding-left: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .video_item > img {
+            width: 30px;
+            height: 30px;
+            margin-right: 15px;
+        }
+
+        .video_item:hover {
+            background-color: #e6f7ff;
+        }
+
+        .active {
+            background-color: #d9edf7;
+        }
+
+        video {
+            width: 100%;
+            /* 去掉圆角 */
+            border-radius: 0;
+        }
+
+        .play_btn {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* 自定义滚动条样式（适用于webkit浏览器） */
+        .video_list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .video_list::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 4px;
+        }
+
+        .video_list::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+    </style>
 </head>
 
-<style>
-    .nearMedicine_banner {
-        width: 100%;
-        min-height: 750px;
-        margin-top: 124px;
-
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-
-    .video_container {
-        width: 70%;
-
-        /*background-color: #00d084;*/
-    }
-
-    .video_list {
-        width: 25%;
-        max-height: 750px;
-        overflow-y: auto;
-        /*background-color: darksalmon;*/
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-    }
-
-    .video_list > ul {
-        margin: 10px;
-        margin-top: 0;
-        box-shadow: 0 0 15px #cccccccc;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-content: center;
-        flex-wrap: wrap;
-    }
-
-    .video_list span {
-        line-height: 40px;
-    }
-
-    .video_item {
-        width: 80%;
-        height: 100px;
-        color: black;
-        text-align: center;
-        border-radius: 20px;
-
-        transition: background-color .3s;
-
-        display: flex;
-        /*justify-content: center;*/
-        align-items: center;
-    }
-
-    .video_item > * {
-        margin-left: 30px;
-    }
-
-    .video_item:hover {
-        background-color: #fff1b8;
-    }
-
-    .active {
-        background-color: #ffe58f;
-    }
-
-    video {
-        width: 100%;
-    }
-
-    .play_btn {
-        width: 50px;
-        height: 50px;
-    }
-</style>
 <body>
 
 <div id="preloader">
@@ -109,32 +142,35 @@
 </div>
 
 <div th:replace="common/common-bar::#header"></div>
+
 <div class="nearMedicine_banner">
     <div class="video_container">
         <video th:src="${currentVideo.getLink()}" controls autoplay>
             您的浏览器不支持 video 标签。
         </video>
-        <div>
+    </div>
+
+    <div class="video_info_and_list_container">
+        <div class="video_info_above_list">
             <h2 th:text="${currentVideo.getTitle()}"></h2>
             <div th:text="${currentVideo.getDescription()}"></div>
         </div>
-    </div>
 
-    <div class="video_list">
-        <ul>
-            <li th:onclick="goTo([[${video.getId()}]])"
-                th:class="${currentVideoId == video.getId() ? 'active video_item': 'video_item'}"
-                th:each="video: ${videos}">
-                <img src="assets/images/play.png" class="play_btn"/>
-                <span th:text="${video.getTitle()}"></span>
-            </li>
-        </ul>
+        <div class="video_list">
+            <ul>
+                <li th:onclick="goTo([[${video.getId()}]])"
+                    th:class="${currentVideoId == video.getId()? 'active video_item': 'video_item'}"
+                    th:each="video: ${videos}">
+                    <img src="assets/images/play.png" class="play_btn" />
+                    <span th:text="${video.getTitle()}"></span>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
+
 <div th:replace="common/common-bar::#back"></div>
-
 <div th:replace="common/common-bar::#footer"></div>
-
 <div th:replace="common/common-bar::#back-to-top"></div>
 
 <script>
@@ -156,4 +192,5 @@
 <script src="common/custom.js"></script>
 <script src="assets/js/xtiper.min.js"></script>
 </body>
+
 </html>

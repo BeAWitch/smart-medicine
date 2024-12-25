@@ -73,10 +73,10 @@
                                                 <td>
                                                     <a th:href="@{articleDetail(id=${article.id}, createUser=${userIdToNameMap.get(article.createUser)}, category=${categoryIdToNameMap.get(article.categoryId)})}"><i
                                                             class="fa fa-eye text-info" aria-hidden="true"></i> </a>
-                                                    <a th:if="${session.loginUser.roleStatus eq 1}" th:href="@{add-article(id=${article.id})}"><i
+                                                    <a th:if="${session.loginUser.roleStatus eq 4}" th:href="@{add-article(id=${article.id})}"><i
                                                             class="fa fa-pencil-square-o text-primary"
                                                             aria-hidden="true"></i> </a>
-                                                    <a th:if="${session.loginUser.roleStatus eq 1}" th:onclick="deleteArticle([[${article.id}]])"
+                                                    <a th:if="${session.loginUser.roleStatus eq 4}" th:onclick="deleteArticle([[${article.id}]])"
                                                        href="javascript:void(0)"><i class="fa fa-trash-o text-danger"
                                                                                     aria-hidden="true"></i> </a>
                                                 </td>

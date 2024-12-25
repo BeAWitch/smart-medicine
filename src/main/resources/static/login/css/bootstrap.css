@@ -357,6 +357,11 @@ a:focus {
   outline-offset: -2px;
 }
 
+.username-color {
+  color: #39ccf5; /* 这里可以替换为你想要的颜色 */
+}
+
+
 figure {
   margin: 0;
 }

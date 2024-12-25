@@ -46,7 +46,6 @@
                                         <table class="basic-table table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>ID</th>
                                                 <th>姓名</th>
                                                 <th>邮箱</th>
                                                 <th>标题</th>
@@ -57,7 +56,6 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="feedback:${feedbackList}">
-                                                <td th:text="${feedback.id}"></td>
                                                 <td th:text="${feedback.name}"></td>
                                                 <td th:text="${feedback.email}"></td>
                                                 <td th:text="${feedback.title}"></td>

@@ -46,12 +46,11 @@
 <!--                    <div th:if="${session.loginUser == null}" class="header-btn">-->
 <!--                        <button class="btn btn-na" onclick="login()">登录</button>-->
 <!--                    </div>-->
-
-                    <div th:if="${session.loginUser != null}" class="register-login">
+                    <div th:if="${session.loginUser  != null}" class="register-login">
                         <div class="dropdown">
                             <button class="btn-dash dropdown-toggle" type="button" id="dropdownMenuButton11"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fa fa-user-circle"></i> 欢迎你 [[${session.loginUser.userName}]]
+                                <i class="fa fa-user-circle"></i> 欢迎你 <span style="color: #3ec3f1;" th:text="${session.loginUser.userName}">[[${session.loginUser.userName}]]</span>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton11">
                                 <a class="dropdown-item" href="profile"><i class="sl sl-icon-user"></i> 我的资料</a>
@@ -59,6 +58,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -152,16 +152,16 @@
     <div class="dashboard-nav">
         <div class="dashboard-nav-inner">
             <ul>
-                <li>
+                <li th:class="${cur == 'illness'? 'active': ''}">
                     <a href="all-illness"><i class="sl sl-icon-layers"></i> 疾病管理</a>
                 </li>
-                <li>
+                <li th:class="${cur == 'medical'? 'active': ''}">
                     <a href="all-medical"><i class="sl sl-icon-layers"></i> 药品管理</a>
                 </li>
-                <li>
+                <li th:class="${cur == 'video'? 'active': ''}">
                     <a href="all-video"><i class="sl sl-icon-layers"></i> 科普视频管理</a>
                 </li>
-                <li>
+                <li th:class="${cur == 'feedback'? 'active': ''}">
                     <a href="all-feedback"><i class="sl sl-icon-layers"></i> 反馈管理</a>
                 </li>
             </ul>
@@ -195,7 +195,7 @@
                 <li th:class="${cur == 'article' ? 'active': ''}">
                     <a href="findOwnArticles"><i class="sl sl-icon-layers"></i>我的文章</a>
                 </li>
-                <li th:if="${session.loginUser.roleStatus eq 1}" th:class="${cur == 'category' ? 'active': ''}">
+                <li th:if="${session.loginUser.roleStatus eq 4}" th:class="${cur == 'category' ? 'active': ''}">
                     <a href="all-category"><i class="sl sl-icon-layers"></i>类别管理</a>
                 </li>
             </ul>

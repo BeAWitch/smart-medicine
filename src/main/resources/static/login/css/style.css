@@ -65,14 +65,14 @@ body {
 }
 
 a {
-    color: #fa8c16;
+    color: #41a6e8;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
     transition: 0.5s;
 }
 
 a:hover, a:active, a:focus {
-    color: #fa8c16;
+    color: #41a6e8;
     outline: none;
     text-decoration: none;
 }
@@ -90,17 +90,17 @@ h1, h2, h3, h4, h5, h6, figure {
 
 ::-webkit-selection {
     color: #fff;
-    background: #fa8c16;
+    background: #41a6e8;
 }
 
 ::-moz-selection {
     color: #fff;
-    background: #fa8c16;
+    background: #41a6e8;
 }
 
 ::selection {
     color: #fff;
-    background: #fa8c16;
+    background: #41a6e8;
 }
 
 .gtco-container {
@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .gtco-nav #gtco-logo em {
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .gtco-nav a {
@@ -236,7 +236,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .gtco-nav ul li.has-dropdown .dropdown li a:hover {
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .gtco-nav ul li.has-dropdown .dropdown li.active > a {
@@ -248,7 +248,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .gtco-nav ul li.btn-cta a {
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .gtco-nav ul li.btn-cta a span {
@@ -270,7 +270,7 @@ h1, h2, h3, h4, h5, h6, figure {
 
 .gtco-nav ul li.btn-cta a:hover span {
     background: #fff;
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .gtco-nav ul li.active > a {
@@ -393,7 +393,7 @@ h1, h2, h3, h4, h5, h6, figure {
     display: block;
     padding: 10px 20px 20px 20px;
     background: #fff;
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 #gtco-header .form-wrap .tab-menu li.gtco-first a {
@@ -516,7 +516,7 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 .gtco-cover a {
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .gtco-cover a:hover {
@@ -666,7 +666,7 @@ h1, h2, h3, h4, h5, h6, figure {
     display: inline-block;
     zoom: 1;
     *display: inline;
-    color: #fa8c16;
+    color: #41a6e8;
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -798,7 +798,7 @@ form label {
 #gtco-counter .counter {
     font-size: 50px;
     margin-bottom: 10px;
-    color: #fa8c16;
+    color: #41a6e8;
     font-weight: 100;
     display: block;
 }
@@ -920,7 +920,7 @@ form label {
 .feature-center h3 {
     font-size: 20px;
     margin-bottom: 20px;
-    color: #fa8c16;
+    color: #41a6e8;
     position: relative;
 }
 
@@ -941,7 +941,7 @@ form label {
     display: table-cell;
     vertical-align: middle;
     font-size: 40px;
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .feature-left .feature-copy {
@@ -1044,7 +1044,7 @@ form label {
 #gtco-subscribe .btn {
     height: 46px;
     border: none !important;
-    background: #fa8c16;
+    background: #41a6e8;
     color: #fff;
     font-size: 16px;
     text-transform: uppercase;
@@ -1132,7 +1132,7 @@ form label {
 }
 
 #gtco-footer .footer-logo span {
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 #gtco-footer .copyright {
@@ -1434,24 +1434,24 @@ form label {
 }
 
 .btn-primary {
-    background: #fa8c16;
+    background: #41a6e8;
     color: #fff;
-    border: 2px solid #fa8c16 !important;
+    border: 2px solid #41a6e8 !important;
 }
 
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
-    background: #f6646a !important;
-    border-color: #f6646a !important;
+    background: #2e72ee !important;
+    border-color: #2e72ee !important;
 }
 
 .btn-primary.btn-outline {
     background: transparent;
-    color: #fa8c16;
-    border: 2px solid #fa8c16;
+    color: #41a6e8;
+    border: 2px solid #41a6e8;
 }
 
 .btn-primary.btn-outline:hover, .btn-primary.btn-outline:focus, .btn-primary.btn-outline:active {
-    background: #fa8c16;
+    background: #41a6e8;
     color: #fff;
 }
 
@@ -1623,7 +1623,7 @@ form label {
 .form-control:active, .form-control:focus {
     outline: none;
     box-shadow: none;
-    border-color: #fa8c16;
+    border-color: #41a6e8;
 }
 
 .row-mt-15em {
@@ -1691,7 +1691,7 @@ form label {
 }
 
 .gtco-nav .gtco-contact ul li a i {
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .gtco-nav .gtco-contact ul li a:hover i {
@@ -1791,7 +1791,7 @@ form label {
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"] i {
     font-size: 24px;
-    background: #fa8c16 !important;
+    background: #41a6e8 !important;
     padding: 12px;
     -webkit-transition: 0.5s;
     -o-transition: 0.5s;
@@ -1799,7 +1799,7 @@ form label {
 }
 
 .owl-theme .owl-controls .owl-nav [class*="owl-"]:hover i, .owl-theme .owl-controls .owl-nav [class*="owl-"]:focus i {
-    background: #fa8c16 !important;
+    background: #41a6e8 !important;
 }
 
 .owl-theme .owl-dots {
@@ -1817,7 +1817,7 @@ form label {
 .owl-theme .owl-dots .owl-dot span {
     width: 10px;
     height: 10px;
-    background: #fa8c16;
+    background: #41a6e8;
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;
@@ -1826,12 +1826,12 @@ form label {
 
 .owl-theme .owl-dots .owl-dot span:hover {
     background: none;
-    border: 2px solid #fa8c16;
+    border: 2px solid #41a6e8;
 }
 
 .owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
     background: none;
-    border: 2px solid #fa8c16;
+    border: 2px solid #41a6e8;
 }
 
 .fh5co-project-item {
@@ -1910,7 +1910,7 @@ form label {
     font-size: 20px;
     font-weight: 300;
     margin: 0 0 10px 0;
-    color: #fa8c16;
+    color: #41a6e8;
 }
 
 .fh5co-project-item .fh5co-text span {
@@ -1977,7 +1977,7 @@ form label {
 }
 
 .price-box.popular {
-    border: 2px solid #fa8c16;
+    border: 2px solid #41a6e8;
 }
 
 .price-box.popular .popular-text {
@@ -1987,7 +1987,7 @@ form label {
     margin-top: -2em;
     position: absolute;
     padding: 4px 20px;
-    background: #fa8c16;
+    background: #41a6e8;
     color: #fff;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -2002,7 +2002,7 @@ form label {
     left: 50%;
     margin-left: -10px;
     border-top: 10px solid black;
-    border-top-color: #fa8c16;
+    border-top-color: #41a6e8;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
 }
