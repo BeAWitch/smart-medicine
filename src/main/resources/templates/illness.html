@@ -30,62 +30,30 @@
 
 <div th:replace="common/common-bar::#header"></div>
 
-
 <div id="dashboard">
     <div class="container">
-        <div class="dashboard-main">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="dashboard-content">
-                        <div class="dashboard-review single-comments">
-                            <div class="comments">
-                                <div style="margin-top: 30px;text-align: center"><h3 th:text="${title eq null}?'全部':('与'+${title}+'相关的药如下')"></h3></div>
-                                <div class="comment-box d-flex align-items-center justify-content-between" th:each="me:${medicineList}">
-                                    <div class="comment-image">
-                                        <a th:href="@{findMedicineOne(id=${me.id})}">
-                                        <img th:src="${me.imgPath}" alt="image"/>
-                                        </a>
-                                    </div>
-                                    <div class="comment-content" style="width: 80%;height: 150px">
-                                        <a th:href="@{findMedicineOne(id=${me.id})}">
-                                            <h5 class="m-0" th:text="${me.medicineName}">Helena</h5>
-                                        </a>
-                                        <p class="comment-date mb-2" th:text="${me.medicineBrand}+'牌'">April 25, 2019 at 10:46 am</p>
-                                        <span class="num-rating white" th:text="${me.medicineType eq 0}?'西药':(${me.medicineType eq 1}?'中药':'中性药')">4.6/5</span>
-                                        <span class="comment-title"><i>"是药三分毒，切忌不要乱吃药！"</i></span>
-                                        <p class="comment mt-2" th:text="${me.medicineEffect}">
-                                            Take in the iconic skyline and visit the neighbourhood hangouts that you've
-                                            only ever seen on TV. Take in the iconic skyline and visit
-                                            the neighbourhood.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="comment-box d-flex align-items-center justify-content-between" th:if="${medicineList eq null}">
-                                    <div class="comment-image">
-                                        <img src="images/team/user-2.jpg" alt="image"/>
-                                    </div>
-                                    <div class="comment-content">
-                                        <h5 class="m-0" >Helena</h5>
-                                        <p class="comment-date mb-2" >April 25, 2019 at 10:46 am</p>
-                                        <span class="num-rating white" >4.6/5</span>
-                                        <span class="comment-title"><i>"是药三分毒，切忌不要乱吃药！"</i></span>
-                                        <p class="comment mt-2" >
-                                            Take in the iconic skyline and visit the neighbourhood hangouts that you've
-                                            only ever seen on TV. Take in the iconic skyline and visit
-                                            the neighbourhood.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+        <h2 style="text-align: center;margin-bottom: 30px;margin-top: -70px;color: #76c5ea" th:text="${title}"></h2>
+        <div class="row" th:if="${medicineList.size()>0}">
+            <div class="col-lg-4 col-md-6 mb-3" th:each="me:${medicineList}">
+                <div class="search-list-wp bg-white" style="display: flex; flex-direction: column; justify-content: center; height: 250px;">
+                    <div class="p-4" style="display: flex; flex-direction: column; justify-content: center; height: 250px">
+                        <div class="comment-image" style="text-align: center;">
+                            <a th:href="@{findMedicineOne(id=${me.id})}">
+                                <img th:src="${me.imgPath}" alt="image" style="max-width: 90%; max-height: 145px; display: block; margin: 0 auto;"/>
+                            </a>
+                        </div>
+                        <div class="medicine-info" style="display: flex; flex-direction: column; justify-content: center; margin-top: 20px;">
+                            <h5 class="mb-3 flex-grow-1" style="margin: 0; text-align: center;">
+                                <a th:href="@{findMedicineOne(id=${me.id})}" class="cl-blue" th:text="${me.medicineName}"></a>
+                            </h5>
+                            <span class="num - rating white" th:text="${me.medicineType eq 0}?'西药':(${me.medicineType eq 1}?'中药':'中性药')" style="text-align: center; background: #4db7fe; border-radius: 5px; color: #fff; width: 80px; margin: 0 auto;"></span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
 <section class="search-list-sh p-0">
     <div class="container">
         <div class="search-again bg-white text-center mt-n3">
@@ -113,6 +81,7 @@
         </div>
     </div>
 </section>
+</div>
 
 
 <div th:replace="common/common-bar::#back"></div>
