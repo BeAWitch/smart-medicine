@@ -428,6 +428,14 @@ public class SystemController extends BaseController<User> {
 
         return "add-user";
     }
+
+    @GetMapping("/bigData")
+    public String bigData(Map<String, Object> map) {
+        if (Assert.isEmpty(loginUser)) {
+            return "redirect:/index.html";
+        }
+        return "bigData";
+    }
 }
 
 

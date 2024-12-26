@@ -26,6 +26,7 @@
                             <li><a href="videoSupport">科普视频</a></li>
                             <li><a href="identification">中草药识别</a></li>
                             <li><a href="all-article">病友交流</a></li>
+                            <li><a href="bigData">附近医院</a></li>
                             <li th:if="${session.loginUser!= null && session.loginUser.roleStatus!= null && (session.loginUser.roleStatus eq 0 || session.loginUser.roleStatus eq 1)}" th:class="${cur == 'userManagement'? 'active': ''}">
                                 <a href="all-user"><i class="sl sl-icon-user-settings"></i> 用户管理</a>
                             </li>
