@@ -47,6 +47,11 @@ public class User {
     private String userTel;
 
     // 用户角色状态
+    // 0 - 超级用户
+    // 1 - 用户管理员
+    // 2 - 信息管理员
+    // 3 - 普通用户
+    // 4 - 文章管理员
     private Integer roleStatus;
 
     // 用户头像

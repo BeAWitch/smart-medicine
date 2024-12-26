@@ -495,7 +495,7 @@
   position: relative;
 }
 
-.shell-main-bottom-bottom::before {
+/*.shell-main-bottom-bottom::before {
   content: '';
   width: 250px;
   height: 250px;
@@ -508,7 +508,7 @@
   animation: transform 4s infinite;
   opacity: 0.8;
   z-index: -999;
-}
+}*/
 
 @keyframes transform {
   0% {

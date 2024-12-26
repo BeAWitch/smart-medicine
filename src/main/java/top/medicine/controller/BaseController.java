@@ -94,6 +94,5 @@ public class BaseController<T> {
     public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
         this.session = request.getSession(true);
         loginUser = (User) session.getAttribute("loginUser");
-        session.setAttribute("kindList", illnessKindService.findList());
     }
 }
