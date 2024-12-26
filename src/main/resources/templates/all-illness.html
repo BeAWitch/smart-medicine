@@ -52,8 +52,14 @@
                                         <table class="basic-table table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>分类</th>
-                                                <th>名称</th>
+                                                <th>分 类
+                                                    <span class="sort-button" onclick="sortTableByCategory('desc')">∧</span>
+                                                    <span class="sort-button" onclick="sortTableByCategory('asc')">∨</span>
+                                                </th>
+                                                <th>名 称
+                                                    <span class="sort-button" onclick="sortTableByName('desc')">∧</span>
+                                                    <span class="sort-button" onclick="sortTableByName('asc')">∨</span>
+                                                </th>
                                                 <th>特殊症状</th>
                                                 <th>更新时间</th>
                                                 <th>操作</th>
@@ -106,5 +112,68 @@
 <script src="common/utils/reg.js"></script>
 <script src="common/layer/layer.js"></script>
 <script src="common/custom.js"></script>
+<script>
+    // 按类别排序函数，根据传入的参数决定正序或倒序排序
+    function sortTableByCategory(order) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.querySelector(".basic-table");
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                if (order === 'asc') {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (order === 'desc') {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    // 按名称排序函数，根据传入的参数决定正序或倒序排序
+    function sortTableByName(order) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.querySelector(".basic-table");
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[1];
+                y = rows[i + 1].getElementsByTagName("TD")[1];
+                if (order === 'asc') {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (order === 'desc') {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
 </body>
 </html>

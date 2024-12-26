@@ -53,8 +53,14 @@
                                             <thead>
                                             <tr>
                                                 <th>名称</th>
-                                                <th>品牌</th>
-                                                <th>类型</th>
+                                                <th>品牌
+                                                    <span class="sort-button" onclick="sortTableByBrand('desc')">∧</span>
+                                                    <span class="sort-button" onclick="sortTableByBrand('asc')">∨</span>
+                                                </th>
+                                                <th>类型
+                                                    <span class="sort-button" onclick="sortTableByType('desc')">∧</span>
+                                                    <span class="sort-button" onclick="sortTableByType('asc')">∨</span>
+                                                </th>
                                                 <th>价格</th>
                                                 <th>更新时间</th>
                                                 <th>操作</th>
@@ -112,5 +118,76 @@
 <script src="common/utils/reg.js"></script>
 <script src="common/layer/layer.js"></script>
 <script src="common/custom.js"></script>
+<script>
+    // 按品牌排序函数，根据传入的参数决定正序或倒序排序
+    function sortTableByBrand(order) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.querySelector(".basic-table");
+        switching = true;
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[1];
+                y = rows[i + 1].getElementsByTagName("TD")[1];
+                if (order === 'asc') {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (order === 'desc') {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    // 按类型排序函数，根据传入的参数决定正序或倒序排序
+    // 按类型排序函数，根据传入的参数决定正序或倒序排序
+    function sortTableByType(order) {
+        var table, rows, switching, i, x, y, shouldSwitch, typeMapping;
+        table = document.querySelector(".basic-table");
+        switching = true;
+        typeMapping = {
+            '西药': 0,
+            '中药': 1,
+            '中成药': 2
+        };
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[2].innerText; // 使用innerText获取文本内容
+                y = rows[i + 1].getElementsByTagName("TD")[2].innerText;
+                var xTypeValue = typeMapping[x];
+                var yTypeValue = typeMapping[y];
+                if (order === 'asc') {
+                    if (xTypeValue > yTypeValue) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (order === 'desc') {
+                    if (xTypeValue < yTypeValue) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
 </body>
 </html>

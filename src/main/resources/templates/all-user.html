@@ -55,11 +55,17 @@
                                         <table class="basic-table table table-hover">
                                             <thead>
                                             <tr>
-                                                <th>账号<span class="sort-button" onclick="sortTableByAccount()">   ∨</span></th>
+                                                <th>账号
+                                                    <span class="sort-button" onclick="sortTableByAccount('desc')">∧</span>
+                                                    <span class="sort-button" onclick="sortTableByAccount('asc')">∨</span>
+                                                </th>
                                                 <th>用户名</th>
                                                 <th>性别</th>
                                                 <th>密码</th>
-                                                <th>角色<span class="sort-button" onclick="sortTableByRole()">    ∨</span></th>
+                                                <th>角色
+                                                    <span class="sort-button" onclick="sortTableByRole('desc')">∧</span>
+                                                    <span class="sort-button" onclick="sortTableByRole('asc')">∨</span>
+                                                </th>
                                                 <th>更新时间</th>
                                                 <th>操作</th>
                                             </tr>
@@ -120,8 +126,8 @@
 <script src="common/layer/layer.js"></script>
 <script src="common/custom.js"></script>
 <script>
-    // 按角色排序
-    function sortTableByRole() {
+    // 按角色排序函数，根据传入的参数决定正序或倒序排序
+    function sortTableByRole(order) {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.querySelector(".basic-table");
         switching = true;
@@ -134,10 +140,17 @@
                 shouldSwitch = false;
                 x = rows[i].getElementsByTagName("TD")[4];
                 y = rows[i + 1].getElementsByTagName("TD")[4];
-                // 获取角色文本并比较
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
+                // 根据传入的排序顺序参数进行比较
+                if (order === 'asc') {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (order === 'desc') {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
                 }
             }
             if (shouldSwitch) {
@@ -147,8 +160,8 @@
         }
     }
 
-    // 按账号排序
-    function sortTableByAccount() {
+    // 按账号排序函数，根据传入的参数决定正序或倒序排序
+    function sortTableByAccount(order) {
         var table, rows, switching, i, x, y, shouldSwitch;
         table = document.querySelector(".basic-table");
         switching = true;
@@ -161,10 +174,17 @@
                 shouldSwitch = false;
                 x = rows[i].getElementsByTagName("TD")[0];
                 y = rows[i + 1].getElementsByTagName("TD")[0];
-                // 获取账号文本并比较
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
+                // 根据传入的排序顺序参数进行比较
+                if (order === 'asc') {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (order === 'desc') {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
                 }
             }
             if (shouldSwitch) {
