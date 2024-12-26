@@ -17,18 +17,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @description  用户登陆与注册
+ */
 @RestController
 @RequestMapping(value = "login")
-@Tag(name = "登录",description = "用户登录相关操作")
 public class LoginController extends BaseController<User> {
 
-    @Operation(summary = "注册",
-            description = "注册一个新账户",
-            parameters = {
-                    @Parameter(name = "user", description = "用户信息"),
-                    @Parameter(name = "code", description = "邮箱验证码")
-            })
+    /**
+     * 注册
+     * @param user 用户信息
+     * @param code 邮箱验证码
+     */
     @PostMapping("/register")
     public RespResult register(User user, String code) {
         String email = user.getUserEmail();
@@ -61,11 +61,10 @@ public class LoginController extends BaseController<User> {
         return RespResult.success("注册成功", user);
     }
 
-    @Operation(summary = "注册",
-            description = "注册一个新账户",
-            parameters = {
-                    @Parameter(name = "user", description = "用户字段(只需要userAccount和userPwd)"),
-            })
+    /**
+     * 登录
+     * @param user 用户字段(只需要userAccount和userPwd)
+     */
     @PostMapping("/login")
     public RespResult login(User user) {
         List<User> users = userService.query(user);
@@ -79,11 +78,10 @@ public class LoginController extends BaseController<User> {
         return RespResult.fail("密码错误");
     }
 
-    @Operation(summary = "发送邮箱验证码",
-            description = "发送一个邮箱验证码，有效期为60s",
-            parameters = {
-                    @Parameter(name = "email", description = "邮箱"),
-            })
+    /**
+     * 发送邮箱验证码
+     * @param email 邮箱
+     */
     @PostMapping("/sendEmailCode")
     public RespResult sendEmailCode(String email, Map<String, Object> map) {
         if (StrUtil.isEmpty(email)) {

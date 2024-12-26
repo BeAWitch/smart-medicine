@@ -11,10 +11,11 @@ import top.medicine.dto.RespResult;
 import top.medicine.entity.Medicine;
 
 
-
+/**
+ * @description  药品相关操作
+ */
 @RestController
 @RequestMapping("medicine")
-@Tag(name = "药品",description = "药品相关操作")
 public class MedicineController extends BaseController<Medicine> {
 
     @ResponseBody

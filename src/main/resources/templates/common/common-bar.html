@@ -195,7 +195,7 @@
                 <li th:class="${cur == 'article' ? 'active': ''}">
                     <a href="findOwnArticles"><i class="sl sl-icon-layers"></i>我的文章</a>
                 </li>
-                <li th:if="${session.loginUser.roleStatus eq 4}" th:class="${cur == 'category' ? 'active': ''}">
+                <li th:if="${session.loginUser.roleStatus eq 4 or session.loginUser.roleStatus eq 0}" th:class="${cur == 'category' ? 'active': ''}">
                     <a href="all-category"><i class="sl sl-icon-layers"></i>类别管理</a>
                 </li>
             </ul>

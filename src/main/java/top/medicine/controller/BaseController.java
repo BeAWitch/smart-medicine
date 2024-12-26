@@ -1,14 +1,11 @@
 package top.medicine.controller;
 
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.medicine.component.EmailClient;
 import top.medicine.dto.RespResult;
-import top.medicine.entity.IllnessKind;
 import top.medicine.entity.User;
 import top.medicine.service.*;
 import top.medicine.utils.Assert;
@@ -16,7 +13,6 @@ import top.medicine.utils.Assert;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 
 
@@ -53,19 +49,14 @@ public class BaseController<T> {
 
     @Autowired
     protected EmailClient emailClient;
-
-    /*protected HttpServletRequest request;
-    protected HttpServletResponse response;*/
     protected HttpSession session;
     protected User loginUser;
-    //protected List<IllnessKind> kindList;
 
 
-    @Operation(summary = "保存",
-            description = "保存对应实例",
-            parameters = {
-                    @Parameter(name = "obj", description = "保存的对象")
-            })
+    /**
+     * 保存对应实例
+     * @param obj 保存的对象
+     */
     @ResponseBody
     @PostMapping("save")
     public RespResult save(T obj) {
@@ -76,11 +67,10 @@ public class BaseController<T> {
         return RespResult.success("保存成功", obj);
     }
 
-    @Operation(summary = "删除",
-            description = "根据id删除数据库对象",
-            parameters = {
-                    @Parameter(name = "id", description = "对象id")
-            })
+    /**
+     * 根据id删除数据库对象
+     * @param id 对象id
+     */
     @ResponseBody
     @PostMapping("/delete")
     public RespResult delete(Integer id) {
@@ -97,11 +87,11 @@ public class BaseController<T> {
         return RespResult.success("删除成功");
     }
 
-    
+    /**
+     * 数据准备
+     */
     @ModelAttribute
     public void setReqAndRes(HttpServletRequest request, HttpServletResponse response) {
-        /*this.request = request;
-        this.response = response;*/
         this.session = request.getSession(true);
         loginUser = (User) session.getAttribute("loginUser");
         session.setAttribute("kindList", illnessKindService.findList());

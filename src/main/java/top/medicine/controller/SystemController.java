@@ -15,19 +15,22 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.*;
 
 
-
+/**
+ * 主控制器
+ * @description 主要用于查询和数据准备，不涉及数据修改
+ */
 @Controller
 public class SystemController extends BaseController<User> {
 
 
     @GetMapping("/index.html")
-    public String index(Map<String, Object> map) {
+    public String index() {
         return "index";
     }
 
 
     @GetMapping("/doctor")
-    public String doctor(Map<String, Object> map) {
+    public String doctor() {
         /*if (Assert.isEmpty(loginUser)) {
             return "redirect:/index.html";
         }*/

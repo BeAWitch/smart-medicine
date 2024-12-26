@@ -20,14 +20,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-
+/**
+ * @description  获取搜索历史相关数据
+ */
 @RestController
 @RequestMapping("history")
-@Tag(name = "历史",description = "获取搜索历史相关数据")
 public class HistoryController extends BaseController<History> {
 
-    @Operation(summary = "获取历史数据",
-            description = "获取历史数据的统计量")
+    /**
+     * 获取历史数据
+     */
     @PostMapping("/data")
     public Object rank() {
 
@@ -47,7 +49,7 @@ public class HistoryController extends BaseController<History> {
 
         JSONArray x = new JSONArray();
         for (String key : keys) {
-            //特定关键词的全部搜索结果
+            // 特定关键词的全部搜索结果
             List<HistoryNew> keys0 = historyNews.stream().filter(v->v.getKeyword().equals(key)).collect(Collectors.toList());
 
             List<Long> o = new ArrayList<>();

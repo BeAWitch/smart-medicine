@@ -6,6 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import top.medicine.dto.RespResult;
 import top.medicine.entity.Article;
 
+/**
+ * @description  文章相关操作
+ */
 @RestController
 @RequestMapping("/article")
 public class ArticleController extends BaseController<Article>{

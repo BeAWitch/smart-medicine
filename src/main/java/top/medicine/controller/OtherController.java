@@ -17,16 +17,20 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
+/**
+ * @description  其他相关操作
+ */
 @RestController
 @RequestMapping("/service")
-@Tag(name = "其他",description = "其他相关操作")
-@CrossOrigin(methods = {RequestMethod.OPTIONS,RequestMethod.POST},origins = "*",maxAge = 3600)
 public class OtherController extends BaseController<User> {
     @Autowired
     private IdentificationService identificationService;
 
     private Properties medicines;
 
+    /**
+     * 读取识别结果的映射文件
+     */
     public OtherController() throws IOException {
         InputStream inputStream = this.getClass().getResourceAsStream("/medicine.properties");
         InputStreamReader reader = null;
@@ -37,12 +41,10 @@ public class OtherController extends BaseController<User> {
         medicines.load(reader);
     }
 
-    //中草药识别
-    @Operation(summary = "中草药识别",
-            description = "调用中草药识别接口",
-            parameters = {
-                    @Parameter(name = "file", description = "文件")
-            })
+    /**
+     * 中草药识别
+     * @param file 待识别的图片
+     */
     @PostMapping(value = "/identify",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public RespResult identify(MultipartFile file) throws Exception {
         String result = identificationService.identify(file);
