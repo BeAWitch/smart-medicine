@@ -13,9 +13,10 @@ def identify():
 
     if file:
         img = Image.open(file.stream)
-        
+        if img.mode == 'RGBA':
+            img = img.convert('RGB')
+            
         model = models.load_model("./my_model.keras")
-        #model.summary()
         
         class_names = ['baihe', 'dangshen', 'gouqi', 'huaihua', 'jinyinhua']
         

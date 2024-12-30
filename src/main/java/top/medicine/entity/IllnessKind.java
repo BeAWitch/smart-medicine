@@ -9,28 +9,29 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
+/**
+ * @description 疾病种类实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @TableName("illness_kind")
-@Schema(description = "疾病种类实体类")
 public class IllnessKind {
 
-    @Schema(description = "疾病种类id")
+    // 疾病种类id
     private int id;
 
-    @Schema(description = "疾病种类名称")
+    // 疾病种类名称
     private String name;
 
-    @Schema(description = "疾病种类信息")
+    // 疾病种类信息
     private String info;
 
-    @Schema(description = "疾病种类创建时间")
+    // 疾病种类创建时间
     private Date createTime;
 
-    @Schema(description = "疾病种类更新时间")
+    // 疾病种类更新时间
     private Date updateTime;
 
 }

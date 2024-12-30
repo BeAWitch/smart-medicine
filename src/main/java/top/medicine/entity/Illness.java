@@ -12,45 +12,46 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
+/**
+ * @description 疾病实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @TableName("illness")
-@Schema(description = "疾病实体类")
 public class Illness {
 
-    @Schema(description = "疾病id")
+    // 疾病id
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    @Schema(description = "疾病种类id")
+    // 疾病种类id
     private Integer kindId;
 
-    @Schema(description = "疾病名称")
+    // 疾病名称
     private String illnessName;
 
-    @Schema(description = "疾病诱因")
+    // 疾病诱因
     private String includeReason;
 
-    @Schema(description = "疾病症状")
+    // 疾病症状
     private String illnessSymptom;
 
-    @Schema(description = "疾病特殊症状")
+    // 疾病特殊症状
     private String specialSymptom;
 
-    @Schema(description = "疾病创建时间")
+    // 疾病创建时间
     private Date createTime;
 
-    @Schema(description = "疾病更新时间")
+    // 疾病更新时间
     private Date updateTime;
 
+    // 疾病种类
     @TableField(exist = false)
-    @Schema(description = "疾病种类")
     private IllnessKind kind;
 
+    // 疾病对应的药品
     @TableField(exist = false)
-    @Schema(description = "疾病对应的药品")
     private IllnessMedicine illnessMedicine;
 }

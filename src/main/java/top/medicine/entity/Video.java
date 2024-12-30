@@ -9,20 +9,25 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * @description 视频实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @TableName("video")
-@Schema(description = "视频实体类")
 public class Video {
-    @Schema(description = "视频id")
+    // 视频id
     @TableId(type = IdType.AUTO)
     private Integer id;
-    @Schema(description = "视频标题")
+
+    // 视频标题
     private String title;
-    @Schema(description = "视频描述")
+
+    // 视频描述
     private String description;
-    @Schema(description = "视频链接")
+
+    // 视频链接
     private String link;
 }

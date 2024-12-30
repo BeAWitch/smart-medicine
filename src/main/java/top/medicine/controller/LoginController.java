@@ -1,10 +1,5 @@
 package top.medicine.controller;
-
 import cn.hutool.core.util.StrUtil;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,18 +12,18 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-
+/**
+ * @description  用户登陆与注册
+ */
 @RestController
 @RequestMapping(value = "login")
-@Tag(name = "登录",description = "用户登录相关操作")
 public class LoginController extends BaseController<User> {
 
-    @Operation(summary = "注册",
-            description = "注册一个新账户",
-            parameters = {
-                    @Parameter(name = "user", description = "用户信息"),
-                    @Parameter(name = "code", description = "邮箱验证码")
-            })
+    /**
+     * 注册
+     * @param user 用户信息
+     * @param code 邮箱验证码
+     */
     @PostMapping("/register")
     public RespResult register(User user, String code) {
         String email = user.getUserEmail();
@@ -54,18 +49,17 @@ public class LoginController extends BaseController<User> {
         if (Assert.notEmpty(query)) {
             return RespResult.fail("账户已被注册");
         }
-        user.setRoleStatus(0);
+        user.setRoleStatus(3);
         user.setImgPath("https://moti-cloud-v2.oss-cn-beijing.aliyuncs.com/Snipaste_2022-05-01_15-37-01.png");
         user = userService.save(user);
         session.setAttribute("loginUser", user);
         return RespResult.success("注册成功", user);
     }
 
-    @Operation(summary = "注册",
-            description = "注册一个新账户",
-            parameters = {
-                    @Parameter(name = "user", description = "用户字段(只需要userAccount和userPwd)"),
-            })
+    /**
+     * 登录
+     * @param user 用户字段(只需要userAccount和userPwd)
+     */
     @PostMapping("/login")
     public RespResult login(User user) {
         List<User> users = userService.query(user);
@@ -79,11 +73,10 @@ public class LoginController extends BaseController<User> {
         return RespResult.fail("密码错误");
     }
 
-    @Operation(summary = "发送邮箱验证码",
-            description = "发送一个邮箱验证码，有效期为60s",
-            parameters = {
-                    @Parameter(name = "email", description = "邮箱"),
-            })
+    /**
+     * 发送邮箱验证码
+     * @param email 邮箱
+     */
     @PostMapping("/sendEmailCode")
     public RespResult sendEmailCode(String email, Map<String, Object> map) {
         if (StrUtil.isEmpty(email)) {

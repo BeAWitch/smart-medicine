@@ -6,9 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 import top.medicine.entity.IllnessKind;
 
 
+/**
+ * @description  疾病种类相关操作
+ */
 @RestController
 @RequestMapping("illness_kind")
-@Tag(name = "疾病种类",description = "疾病种类相关操作")
 public class IllnessKindController extends BaseController<IllnessKind> {
 
 }

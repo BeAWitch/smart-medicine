@@ -19,8 +19,8 @@ spring:
     time-zone: GMT+8
   # 邮件配置
   mail:
-    username: xxxxxxxxxx
-    password: xxxxxxxxx
+    username: 2213803434@qq.com
+    password: jzbsqxjedgazeabj
     host: smtp.qq.com
     port: 465
     properties:
@@ -50,13 +50,13 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 阿里云通义千问配置
-ai-key: sk-xxx
+ai-key: sk-c2c3fae6c67340be8e719a69bcd68818
 # 阿里云对象存储配置
 oss:
-  bucket-name: xxxxxxx
-  end-point: xxxxxxxxxxxxxx
-  access-key: xxxxxxxxxxx
-  access-secret: xxxxxxxxxxx
+  bucket-name: smart-medicine-007
+  end-point: oss-cn-hangzhou.aliyuncs.com
+  access-key: LTAI5tBdJNtPvTE1orkftfFi
+  access-secret: A9d5VfDNHfJYXMS5pqGYbkKtMsbdAr
 
 flask:
   identification:

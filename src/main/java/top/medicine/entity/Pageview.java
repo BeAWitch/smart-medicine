@@ -10,21 +10,20 @@ import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 
+/**
+ * @description 展示给前端的疾病模板
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-@Schema(description = "展示给前端的疾病模板")
 public class Pageview implements Serializable {
 
     
     private int id;
 
-    
     private Integer pageviews;
 
-
-    
     private Integer illnessId;
 }

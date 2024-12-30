@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 import top.medicine.entity.IllnessMedicine;
 
 
-
+/**
+ * @description  疾病对应药品相关操作
+ */
 @RestController
 @RequestMapping("illness_medicine")
-@Tag(name = "疾病对应药品",description = "疾病对应药品相关操作")
 public class IllnessMedicineController extends BaseController<IllnessMedicine> {
 
 }

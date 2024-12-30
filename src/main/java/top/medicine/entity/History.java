@@ -13,33 +13,34 @@ import lombok.experimental.Accessors;
 import java.util.Date;
 
 
+/**
+ * @description 用户的搜索记录
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
 @TableName("history")
-@Schema(description = "用户的搜索记录")
 public class History {
 
-
-    @Schema(description = "搜索记录的id")
+    // 搜索记录的id
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    @Schema(description = "用户的id")
+    // 用户的id
     private Integer userId;
 
-    @Schema(description = "搜索记录的操作类型: 2为疾病，3为药品")
+    // 搜索记录的操作类型: 2为疾病，3为药品
     private Integer operateType;
 
-    @Schema(description = "搜索记录的内容")
+    // 搜索记录的内容
     private String keyword;
 
-    @Schema(description = "搜索记录的创建时间")
+    // 搜索记录的创建时间
     private Date createTime;
 
-    @Schema(description = "搜索记录的更新时间")
+    // 搜索记录的更新时间
     private Date updateTime;
 
 }

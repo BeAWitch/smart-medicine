@@ -156,10 +156,10 @@
                 <li th:class="${cur == 'illness'? 'active': ''}">
                     <a href="all-illness"><i class="sl sl-icon-layers"></i> 疾病管理</a>
                 </li>
-                <li th:class="${cur == 'medical'? 'active': ''}">
+                <li th:class="${cur == 'medicine'? 'active': ''}">
                     <a href="all-medical"><i class="sl sl-icon-layers"></i> 药品管理</a>
                 </li>
-                <li th:class="${cur == 'video'? 'active': ''}">
+                <li th:class="${cur == 'videos'? 'active': ''}">
                     <a href="all-video"><i class="sl sl-icon-layers"></i> 科普视频管理</a>
                 </li>
                 <li th:class="${cur == 'feedback'? 'active': ''}">
@@ -196,7 +196,7 @@
                 <li th:class="${cur == 'article' ? 'active': ''}">
                     <a href="findOwnArticles"><i class="sl sl-icon-layers"></i>我的文章</a>
                 </li>
-                <li th:if="${session.loginUser.roleStatus eq 4}" th:class="${cur == 'category' ? 'active': ''}">
+                <li th:if="${session.loginUser.roleStatus eq 4 or session.loginUser.roleStatus eq 0}" th:class="${cur == 'category' ? 'active': ''}">
                     <a href="all-category"><i class="sl sl-icon-layers"></i>类别管理</a>
                 </li>
             </ul>

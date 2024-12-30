@@ -25,10 +25,6 @@
 </head>
 <body class="home-3">
 
-<div id="preloader">
-    <div id="status"></div>
-</div>
-
 <div th:replace="common/common-bar::#header"></div>
 
 <section class="banner">
@@ -38,7 +34,6 @@
                 <div class="col-lg-6 col-md-12 col-sm-12">
                     <div class="banner-image-3">
                         <canvas id="qwq"></canvas>
-                        <!--                        <img src="assets/images/banner/NTH_M71_07_07-2048x1191.png" alt=""/>-->
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12">
@@ -98,23 +93,6 @@
 </section>
 
 <style>
-    .function_list {
-        /*border: 1px solid black;*/
-        display: flex;
-        justify-content: space-around;
-    }
-
-    .function_card {
-        width: 25%;
-        background: #fff;
-        box-shadow: 0 0 15px #cccccc57;
-    }
-
-    .function_card:hover {
-        background: #fff1b8;
-    }
-
-
     .function_card > h3 {
         text-align: center;
     }
@@ -224,138 +202,6 @@
     }
 
     timer()
-</script>
-
-<!--<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>-->
-<script src="common/echarts-4.3.0.min.js"></script>
-<script>
-    fetch("user/statis", {
-        method: "POST"
-    }).then(result => result.json()).then(v => {
-        console.log('qqw')
-        let data = v.data
-        let {sex, medicine} = data
-        /*      "l18": 0.0,
-      "l30": 2.0,
-      "l48": 0.0,
-      "l65": 0.0,
-      "l80": 0.0,
-      "l95": 0.0,
-      "m95": 0.0*/
-        let myChart1 = echarts.init(document.getElementById('pie_year'));
-        const mapper = {
-            l18: '18岁以内',
-            l30: '18到30岁',
-            l48: '30到48岁',
-            l65: '48到65岁',
-            l80: '65到80岁',
-            l95: '80到95岁',
-            m95: '95岁以上'
-        }
-        myChart1.setOption(
-            {
-                title: {
-                    text: '注册用户年龄段',
-                    x: 'center',
-                    y: 'bottom'
-                },
-                series: {
-                    type: 'pie',
-                    label: {
-                        normal: {
-                            formatter: (params) => {
-                                const {name,value,percent} = params
-                            //     {
-                            //     "componentType": "series",
-                            //         "componentSubType": "pie",
-                            //         "componentIndex": 0,
-                            //         "seriesType": "pie",
-                            //         "seriesIndex": 0,
-                            //         "seriesId": "\u0000series\u00000\u00000",
-                            //         "seriesName": "series\u00000",
-                            //         "name": "18到30岁",
-                            //         "dataIndex": 1,
-                            //         "data": {
-                            //         "name": "18到30岁",
-                            //             "value": "53.94"
-                            //     },
-                            //     "value": "53.94",
-                            //         "color": "#2f4554",
-                            //         "dimensionNames": [
-                            //         "value"
-                            //     ],
-                            //         "encode": {
-                            //         "value": [
-                            //             0
-                            //         ]
-                            //     },
-                            //     "marker": "<span style=\"display:inline-block;margin-right:5px;border-radius:10px;width:10px;height:10px;background-color:#2f4554;\"></span>",
-                            //         "$vars": [
-                            //         "seriesName",
-                            //         "name",
-                            //         "value",
-                            //         "percent"
-                            //     ],
-                            //         "percent": 10.62,
-                            //         "status": "normal"
-                            // }
-
-                            console.log(JSON.stringify(params))
-                                return `${name}: ${value}\n${percent}%`
-                            },
-                            textStyle: {
-                                fontWeight: 'normal',
-                                fontSize: 15
-                            }
-                        },
-                    },
-                    stillShowZeroSum: false,
-                    data: Object.keys(sex).map(key => {
-                        return {
-                            //TODO 假数据
-                            name: mapper[key],
-                            value: Math.floor(Math.random() * 100),
-                        }
-                    })
-                }
-            }
-        )
-
-        let myChart2 = echarts.init(document.getElementById('pie_medicine'));
-        const mapper2 = {
-            a: '西药',
-            b: '中药',
-            c: '中成药'
-        }
-        myChart2.setOption(
-            {
-                title: {
-                    text: '收录药品类型',
-                    x: 'center',
-                    y: 'bottom'
-                },
-                series: {
-                    type: 'pie',
-                    label: {
-                        normal: {
-                            formatter: '{b}:{c}: ({d}%)',
-                            textStyle: {
-                                fontWeight: 'normal',
-                                fontSize: 15
-                            }
-                        }
-                    },
-                    stillShowZeroSum: false,
-                    data: Object.keys(medicine).map(key => {
-                        return {
-                            name: mapper2[key],
-                            value: medicine[key],
-                        }
-                    })
-                }
-            }
-        )
-    })
 </script>
 
 <!-- 引入样式 -->

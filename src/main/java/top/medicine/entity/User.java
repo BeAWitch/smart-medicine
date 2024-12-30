@@ -11,50 +11,56 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
+/**
+ * @description 用户实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @TableName("user")
-@Schema(description = "用户实体类")
 public class User {
 
-    @Schema(description = "用户id")
+    // 用户id
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    @Schema(description = "用户账号")
+    // 用户账号
     private String userAccount;
 
-    @Schema(description = "用户姓名")
+    // 用户姓名
     private String userName;
 
-    @Schema(description = "用户密码")
+    // 用户密码
     private String userPwd;
 
-    @Schema(description = "用户年龄")
+    // 用户年龄
     private Integer userAge;
 
-    @Schema(description = "用户性别")
+    // 用户性别
     private String userSex;
 
-    @Schema(description = "用户邮箱")
+    // 用户邮箱
     private String userEmail;
 
-    @Schema(description = "用户电话")
+    // 用户电话
     private String userTel;
 
-    @Schema(description = "用户角色状态")
+    // 用户角色状态
+    // 0 - 超级用户
+    // 1 - 用户管理员
+    // 2 - 信息管理员
+    // 3 - 普通用户
+    // 4 - 文章管理员
     private Integer roleStatus;
 
-    @Schema(description = "用户头像")
+    // 用户头像
     private String imgPath;
 
-    @Schema(description = "用户创建时间")
+    // 用户创建时间
     private Date createTime;
 
-    @Schema(description = "用户更新时间")
+    // 用户更新时间
     private Date updateTime;
 
 }

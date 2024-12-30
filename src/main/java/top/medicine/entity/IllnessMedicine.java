@@ -11,29 +11,30 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
+/**
+ * @description 根据疾病查询药品的关联实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @TableName("illness_medicine")
-@Schema(description = "根据疾病查询药品的关联实体类")
 public class IllnessMedicine {
 
-    @Schema(description = "一条记录的id")
+    // 一条记录的id
     @TableId(type = IdType.AUTO)
     private Integer id;
 
-    @Schema(description = "疾病id")
+    // 疾病id
     private Integer illnessId;
 
-    @Schema(description = "药品id")
+    // 药品id
     private Integer medicineId;
 
-    @Schema(description = "药品创建时间")
+    // 药品创建时间
     private Date createTime;
 
-    @Schema(description = "药品更新时间")
+    // 药品更新时间
     private Date updateTime;
 
 }

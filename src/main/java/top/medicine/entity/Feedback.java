@@ -11,37 +11,36 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-
+/**
+ * @description 反馈实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @TableName("feedback")
-@Schema(description = "反馈实体类")
 public class Feedback {
 
-    
+    // 反馈的id
     @TableId(type = IdType.AUTO)
-    @Schema(description = "反馈的id")
     private Integer id;
 
-    @Schema(description = "反馈人姓名")
+    // 反馈人姓名
     private String name;
 
-    @Schema(description = "反馈人邮箱")
+    // 反馈人邮箱
     private String email;
 
+    // 反馈标题
     private String title;
 
-    @Schema(description = "反馈内容")
+    // 反馈内容
     private String content;
 
-    
-    @Schema(description = "反馈创建时间")
+    // 反馈创建时间
     private Date createTime;
 
-    
-    @Schema(description = "反馈更新时间")
+    // 反馈更新时间
     private Date updateTime;
 
 }

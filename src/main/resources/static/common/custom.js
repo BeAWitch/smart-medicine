@@ -553,7 +553,7 @@ function send() {
 function searchGroup(kind) {
     let content = $("#search").val().trim();
     if (content == "") {
-        xtip.msg("请输入查询内容");
+        layer.msg("请输入查询内容");
         return;
     }
     let href = window.location.href;
@@ -565,7 +565,7 @@ function searchGroup(kind) {
 function searchGroupByName() {
     let content = $("#search").val().trim();
     if (content == "") {
-        xtip.msg("请输入查询内容");
+        layer.msg("请输入查询内容");
         return;
     }
     let href = window.location.href;
@@ -577,7 +577,7 @@ function searchGroupByName() {
 function searchGlobalSelect() {
     let content = $("#cf-search-form").val().trim();
     if (content == "") {
-        xtip.msg("请输入查询内容");
+        layer.msg("请输入查询内容");
         return;
     }
     let href = window.location.href;
@@ -590,7 +590,7 @@ function searchGlobalSelect() {
 function searchMedicine() {
     let content = $("#search-medicine").val().trim();
     if (content == "") {
-        xtip.msg("请输入查询内容");
+        layer.msg("请输入查询内容");
         return;
     }
     let href = window.location.href;
@@ -617,6 +617,10 @@ function saveArticle() {
     let category = $('#category').val();
     let content = $('#content').val();
 
+    if (title === "" || content === "") {
+        layer.msg("标题或正文不能为空");
+        return;
+    }
     $.ajax({
         type: "POST",
         url: "article/save",
@@ -718,8 +722,15 @@ function deleteCategory(id) {
 }
 
 function identify() {
+    const uploadInput = document.getElementById('upload-input');
+    if (uploadInput.files.length <= 0){
+        layer.msg("请上传图片");
+        return;
+    }
+
     var formData = new FormData();
     formData.append("file", $("#upload-input").get(0).files[0]);
+
     $.ajax({
         async: false,
         type: "POST",
