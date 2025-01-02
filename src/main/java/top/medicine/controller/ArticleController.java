@@ -1,6 +1,6 @@
 package top.medicine.controller;
 
-import javax.validation.constraints.NotNull;
+import org.springframework.validation.BindException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.medicine.dto.RespResult;
@@ -13,21 +13,19 @@ import top.medicine.entity.Article;
 @RequestMapping("/article")
 public class ArticleController extends BaseController<Article>{
 
-    @PostMapping
-    public RespResult add(@RequestBody @Validated Article article){
-        articleService.save(article);
-        return RespResult.success();
+    @PostMapping("/add")
+    public RespResult add(@Validated(Article.Add.class) Article article){
+        return RespResult.success("保存成功", articleService.save(article));
     }
 
-    @GetMapping("/detail")
-    public RespResult detail(@NotNull final Integer id) {
-        final Article article = articleService.get(id);
-        return RespResult.success("OK", article);
+    @PostMapping("/update")
+    public RespResult update(@Validated(Article.Update.class) Article article) {
+        return RespResult.success("保存成功", articleService.save(article));
     }
 
-    @PutMapping
-    public RespResult update(@RequestBody @Validated(Article.Update.class) Article article) {
-        articleService.save(article);
-        return RespResult.success();
+    @ExceptionHandler(BindException.class)
+    public RespResult handleValidationException(BindException ex) {
+        String errorMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
+        return RespResult.fail("验证失败：" + errorMessage);
     }
 }

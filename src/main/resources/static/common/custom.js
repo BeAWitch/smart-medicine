@@ -618,12 +618,18 @@ function saveArticle() {
     let content = $('#content').val();
 
     if (title === "" || content === "") {
-        layer.msg("标题或正文不能为空");
+        layer.msg("标题或正文不能为空。");
         return;
     }
+
+    if (title.length > 10) {
+        layer.msg("标题的字数不能大于10。");
+        return;
+    }
+
     $.ajax({
         type: "POST",
-        url: "article/save",
+        url: "article/add",
         data: {
             id: id,
             title: title,
@@ -685,6 +691,11 @@ function saveCategory() {
     let id = $('#id').val();
     let categoryName = $("#categoryName").val().trim();
     let userId = $('#userId').val();
+
+    if (categoryName === "") {
+        layer.msg("类别名不能为空");
+        return;
+    }
 
     $.ajax({
         type: "POST",

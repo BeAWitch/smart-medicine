@@ -18,17 +18,16 @@ public class MvcConfig implements WebMvcConfigurer, ErrorPageRegistrar {
     
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        // 注册错误页面
         registry.addViewController("/400").setViewName("error/400");
         registry.addViewController("/401").setViewName("error/401");
         registry.addViewController("/404").setViewName("error/404");
         registry.addViewController("/500").setViewName("error/500");
 
         registry.addViewController("/feedback.html").setViewName("feedback");
-        registry.addViewController("/empty.html").setViewName("empty");
+        //registry.addViewController("/empty.html").setViewName("empty");
     }
 
-    
+    // 注册错误页面
     @Override
     public void registerErrorPages(ErrorPageRegistry registry) {
         ErrorPage error400Page = new ErrorPage(HttpStatus.BAD_REQUEST, "/400");

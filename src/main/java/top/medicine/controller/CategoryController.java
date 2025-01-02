@@ -12,10 +12,14 @@ import top.medicine.entity.Category;
 @RequestMapping("/category")
 public class CategoryController extends BaseController<Category> {
 
-    @PostMapping
+    @PostMapping("/add")
     public RespResult add(@RequestBody @Validated(Category.Add.class) Category category){
-        categoryService.save(category);
-        return RespResult.success();
+        return RespResult.success("保存成功", categoryService.save(category));
+    }
+
+    @PostMapping("update")
+    public RespResult update(@RequestBody @Validated(Category.Update.class) Category category){
+        return RespResult.success("保存成功", categoryService.save(category));
     }
 
 }

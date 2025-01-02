@@ -58,6 +58,14 @@ oss:
   access-key: LTAI5tBdJNtPvTE1orkftfFi
   access-secret: A9d5VfDNHfJYXMS5pqGYbkKtMsbdAr
 
+# 腾讯地图导航APIkey
+map-key:
+  key: LNABZ-QRPLT-VOAX4-VDNDF-HTOXK-NJBEM
+server:
+  address: 0.0.0.0
+  port: 8080
+
+# 中草药识别
 flask:
   identification:
     baseurl: 'localhost:5000'

@@ -64,10 +64,10 @@
                                                 <td th:text="${userIdToNameMap.get(category.createUser)}"></td>
                                                 <td th:text="${#dates.format(category.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
                                                 <td>
-                                                    <a th:if="${session.loginUser.roleStatus eq 4}" th:href="@{add-category(id=${category.id})}"><i
+                                                    <a th:if="${session.loginUser.roleStatus eq 4 or session.loginUser.roleStatus eq 0}" th:href="@{add-category(id=${category.id})}"><i
                                                             class="fa fa-pencil-square-o text-primary"
                                                             aria-hidden="true"></i> </a>
-                                                    <a th:if="${session.loginUser.roleStatus eq 4}" th:onclick="deleteCategory([[${category.id}]])"
+                                                    <a th:if="${session.loginUser.roleStatus eq 4 or session.loginUser.roleStatus eq 0}" th:onclick="deleteCategory([[${category.id}]])"
                                                        href="javascript:void(0)"><i class="fa fa-trash-o text-danger"
                                                                                     aria-hidden="true"></i> </a>
                                                 </td>

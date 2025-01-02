@@ -96,59 +96,6 @@
                         map: map,
                         title: v.title
                     })
-
-                    window.mapKeyOf[v.title] = new qq.maps.LatLng(v.location.lat, v.location.lng)
-                    qq.maps.event.addListener(marker, "click", async function () {
-                        if (polyline !== undefined) {
-                            console.log("remove polyline")
-                            polyline.setMap(null)
-                            polyline = undefined
-                        }
-                        let data = await fetch(`/waypoint?a1=${c.coords.latitude}&n1=${c.coords.longitude}&a2=${v.location.lat}&n2=${v.location.lng}`)
-                            .then((v) => v.json())
-                        if (data.status !== 0) {
-                            layer.msg(data['message'])
-                            return
-                        }
-                        data = data.result.routes[0].polyline
-
-                        const qqPos = []
-                        for (var i = 2; i < data.length; i++) {
-                            data[i] = data[i - 2] + data[i] / 1000000
-                        }
-
-                        for (let i = 0; i + 1 <= data.length; i += 2) {
-                            qqPos.push(new qq.maps.LatLng(data[i],data[i+1]))
-                        }
-
-                        polyline = new qq.maps.Polyline({
-                            //折线是否可点击
-                            clickable: true,
-                            //鼠标在折线上时的样式
-                            cursor: 'crosshair',
-                            //折线是否可编辑
-                            editable: true,
-                            map: map,
-                            //折线的路径
-                            path: qqPos,
-                            //折线的颜色
-                            strokeColor: '#000000',
-                            //可以设置折线的透明度
-                            //strokeColor: new qq.maps.Color(0, 0, 0, 0.5),
-                            //折线的样式
-                            strokeDashStyle: 'butt',
-                            //折线的宽度
-                            strokeWeight: 3,
-                            //折线末端线帽的样式
-                            strokeLinecap: 'square',
-                            //折线是否可见
-                            visible: true,
-                            //折线的zIndex
-                            zIndex: 1000
-
-
-                        });
-                    });
                 })
             }
             getHosts();
@@ -165,24 +112,6 @@
         }, {
             enableHighAccuracy: true
         })
-    }
-
-    function calculateDistance(point1, point2) {
-        console.log('calc')
-        const R = 6371e3; // 地球半径，单位：米
-        const lat1 = point1.lat * Math.PI / 180; // 纬度，转换为弧度
-        const lat2 = point2.lat * Math.PI / 180; // 纬度，转换为弧度
-        const deltaLat = (point2.lat - point1.lat) * Math.PI / 180; // 纬度差，转换为弧度
-        const deltaLon = (point2.lon - point1.lon) * Math.PI / 180; // 经度差，转换为弧度
-
-        const a = Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +
-            Math.cos(lat1) * Math.cos(lat2) *
-            Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
-        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-
-        // 最终距离，单位：米
-        return R * c;
     }
 </script>
 </html>

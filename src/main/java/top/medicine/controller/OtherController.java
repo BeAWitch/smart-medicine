@@ -45,11 +45,10 @@ public class OtherController extends BaseController<User> {
      * 中草药识别
      * @param file 待识别的图片
      */
-    @PostMapping(value = "/identify",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/identify", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public RespResult identify(MultipartFile file) throws Exception {
         String result = identificationService.identify(file);
         result = (String) medicines.get(result);
         return RespResult.success(result);
     }
-
 }

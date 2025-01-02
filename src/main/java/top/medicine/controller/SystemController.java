@@ -168,36 +168,6 @@ public class SystemController extends BaseController<User> {
         return "illness";
     }
 
-
-    @GetMapping("globalSelect")
-    public String globalSelect(Map<String, Object> map, String nameValue) {
-        nameValue = nameValue.replace("，", ",");
-        List<String> idArr = Arrays.asList(nameValue.split(","));
-        //首先根据关键字去查询
-        Set<Illness> illnessSet = new HashSet<>();
-        idArr.forEach(s -> {
-            Illness one = illnessService.getOne(new QueryWrapper<Illness>().like("illness_name", s));
-            if (ObjectUtil.isNotNull(one)) {
-                illnessSet.add(one);
-            }
-        });
-        idArr.forEach(s -> {
-            Illness one = illnessService.getOne(new QueryWrapper<Illness>().like("special_symptom", s));
-            if (ObjectUtil.isNotNull(one)) {
-                illnessSet.add(one);
-            }
-        });
-        idArr.forEach(s -> {
-            Illness one = illnessService.getOne(new QueryWrapper<Illness>().like("illness_symptom", s));
-            if (ObjectUtil.isNotNull(one)) {
-                illnessSet.add(one);
-            }
-        });
-        map.put("illnessSet", illnessSet);
-        return "index";
-    }
-
-
     @GetMapping("add-illness")
     public String addIllness(Integer id, Map<String, Object> map) {
         if (Assert.isEmpty(loginUser)) {
@@ -439,6 +409,7 @@ public class SystemController extends BaseController<User> {
         }
         return "bigData";
     }
+
 }
 
 

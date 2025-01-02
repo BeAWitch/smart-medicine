@@ -65,11 +65,11 @@ public class ArticleService extends BaseService<Article>{
         if (Assert.notEmpty(createUser)) {
             queryWrapper.eq("create_user", createUser);
         }
-        if (Assert.notEmpty(title)) {
-            queryWrapper.like("title", title).or().like("content", title);
-        }
         if (Assert.notEmpty(categoryId)) {
             queryWrapper.eq("category_id", categoryId);
+        }
+        if (Assert.notEmpty(title)) {
+            queryWrapper.like("title", title);
         }
         queryWrapper.last("limit " + (page - 1) * 9 + "," + page * 9);
         articles = articleDao.selectList(queryWrapper);
