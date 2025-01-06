@@ -1,5 +1,6 @@
 package top.medicine.controller;
 
+import org.springframework.validation.BindException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import top.medicine.dto.RespResult;
@@ -13,13 +14,18 @@ import top.medicine.entity.Category;
 public class CategoryController extends BaseController<Category> {
 
     @PostMapping("/add")
-    public RespResult add(@RequestBody @Validated(Category.Add.class) Category category){
+    public RespResult add(@Validated(Category.Add.class) Category category){
         return RespResult.success("保存成功", categoryService.save(category));
     }
 
     @PostMapping("update")
-    public RespResult update(@RequestBody @Validated(Category.Update.class) Category category){
+    public RespResult update(@Validated(Category.Update.class) Category category){
         return RespResult.success("保存成功", categoryService.save(category));
     }
 
+    @ExceptionHandler(BindException.class)
+    public RespResult handleValidationException(BindException ex) {
+        String errorMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
+        return RespResult.fail("验证失败：" + errorMessage);
+    }
 }

@@ -67,23 +67,11 @@ public class SystemController extends BaseController<User> {
         return "videoSupport";
     }
 
-    @SneakyThrows
-    @ResponseBody
-    @GetMapping("/patient-friends")
-    public void patientFriends(HttpServletResponse response) {
-        if (Assert.isEmpty(loginUser)) {
-            response.sendRedirect("/");
-            return;
-        }
-        response.sendRedirect("patient-friends/index.html");
-    }
-
     @GetMapping("/logout")
     public String logout() {
         session.invalidate();
         return "redirect:/index.html";
     }
-
 
     @GetMapping("/all-feedback")
     public String feedback(Map<String, Object> map) {

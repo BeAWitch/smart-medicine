@@ -8,7 +8,6 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.groups.Default;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -31,6 +30,5 @@ public class Category {
     public interface Update extends Default{
 
     }
-
 
 }

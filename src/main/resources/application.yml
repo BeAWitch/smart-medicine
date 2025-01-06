@@ -1,7 +1,4 @@
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   servlet:
     multipart:
       max-file-size: 100MB        # 设置单个文件最大大小为10MB
@@ -17,10 +14,11 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+
   # 邮件配置
   mail:
-    username: 2213803434@qq.com
-    password: jzbsqxjedgazeabj
+    username: xxxxxxxxxxxxxxxxxx
+    password: xxxxxxxxxxxxxxxxxx
     host: smtp.qq.com
     port: 465
     properties:
@@ -41,6 +39,7 @@ management:
   health:
     mail:
       enabled: false
+
 # 日志配置
 logging:
   level:
@@ -50,17 +49,18 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 # 阿里云通义千问配置
-ai-key: sk-c2c3fae6c67340be8e719a69bcd68818
+ai-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
 # 阿里云对象存储配置
 oss:
-  bucket-name: smart-medicine-007
-  end-point: oss-cn-hangzhou.aliyuncs.com
-  access-key: LTAI5tBdJNtPvTE1orkftfFi
-  access-secret: A9d5VfDNHfJYXMS5pqGYbkKtMsbdAr
+  bucket-name: xxxxxxxxxxxxxxxxxxxxxxx
+  end-point: xxxxxxxxxxxxxxxxxxxxx
+  access-key: xxxxxxxxxxxxxxxxxxxxx
+  access-secret: xxxxxxxxxxxxxxxxxxxxx
 
 # 腾讯地图导航APIkey
 map-key:
-  key: LNABZ-QRPLT-VOAX4-VDNDF-HTOXK-NJBEM
+  key: xxxxxxxxxxxxxxxxxxxxx
 server:
   address: 0.0.0.0
   port: 8080
@@ -68,4 +68,4 @@ server:
 # 中草药识别
 flask:
   identification:
-    baseurl: 'localhost:5000'
+    baseurl: 'localhost:8081'

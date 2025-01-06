@@ -24,7 +24,6 @@ public class MvcConfig implements WebMvcConfigurer, ErrorPageRegistrar {
         registry.addViewController("/500").setViewName("error/500");
 
         registry.addViewController("/feedback.html").setViewName("feedback");
-        //registry.addViewController("/empty.html").setViewName("empty");
     }
 
     // 注册错误页面
@@ -46,6 +45,6 @@ public class MvcConfig implements WebMvcConfigurer, ErrorPageRegistrar {
     private LoginHandlerInterceptor loginHandlerInterceptor;
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/profile", "/doctor", "/videoSupport", "/all-article");
+        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/profile", "/doctor", "/videoSupport", "/all-article", "/identification");
     }
 }

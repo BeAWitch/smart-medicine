@@ -192,8 +192,8 @@ function uploadPhoto() {
         url: "file/upload",
         dataType: "json",
         data: formdata,
-        contentType: false,//ajax上传图片需要添加
-        processData: false,//ajax上传图片需要添加
+        contentType: false,
+        processData: false,
         success: function (data) {
             console.log(data);
             layer.msg(data['message']);
@@ -281,6 +281,12 @@ function feedback() {
 
     if (!name || !email || !title || !content) {
         layer.msg("请完整填写信息");
+        return;
+    }
+
+    const regex = /^[^s@]+@[^s@]+.[^s@]+$/;
+    if (!regex.test(email)) {
+        layer.msg("请输入有效的邮箱");
         return;
     }
 
@@ -699,7 +705,7 @@ function saveCategory() {
 
     $.ajax({
         type: "POST",
-        url: "category/save",
+        url: "category/add",
         data: {
             id: id,
             categoryName: categoryName,
