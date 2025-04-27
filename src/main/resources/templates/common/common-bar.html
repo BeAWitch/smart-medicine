@@ -22,11 +22,7 @@
                         <ul class="nav navbar-nav" id="responsive-menu">
                             <li><a href="findIllness">疾病百科</a></li>
                             <li><a href="findMedicines">药品大全</a></li>
-                            <li><a href="doctor">智能医生</a></li>
                             <li><a href="videoSupport">科普视频</a></li>
-                            <li><a href="identification">中草药识别</a></li>
-                            <li><a href="all-article">病友交流</a></li>
-                            <li><a href="bigData">附近医院</a></li>
                             <li th:if="${session.loginUser!= null && session.loginUser.roleStatus!= null && (session.loginUser.roleStatus eq 0 || session.loginUser.roleStatus eq 1)}" th:class="${cur == 'userManagement'? 'active': ''}">
                                 <a href="all-user"><i class="sl sl-icon-user-settings"></i> 用户管理</a>
                             </li>
@@ -38,15 +34,6 @@
                     <div th:if="${session.loginUser == null}" class="register-login">
                         <a href="login">登录/注册</a>
                     </div>
-<!--                    <div th:if="${session.loginUser == null}" class="header-btn">-->
-<!--                        <input id="loginAccount" type="text" placeholder="登录账户">-->
-<!--                    </div>-->
-<!--                    <div th:if="${session.loginUser == null}" class="header-btn">-->
-<!--                        <input id="loginPassword" type="password" placeholder="密码">-->
-<!--                    </div>-->
-<!--                    <div th:if="${session.loginUser == null}" class="header-btn">-->
-<!--                        <button class="btn btn-na" onclick="login()">登录</button>-->
-<!--                    </div>-->
                     <div th:if="${session.loginUser  != null}" class="register-login">
                         <div class="dropdown">
                             <button class="btn-dash dropdown-toggle" type="button" id="dropdownMenuButton11"
@@ -164,40 +151,6 @@
                 </li>
                 <li th:class="${cur == 'feedback'? 'active': ''}">
                     <a href="all-feedback"><i class="sl sl-icon-layers"></i> 反馈管理</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div id="forum-sidebar" class="dashboard-sidebar">
-    <div class="profile-sec">
-        <div class="author-news mb-3">
-            <div class="author-news-content text-center p-3">
-                <div class="author-thumb mt-0">
-                    <img th:src="${session.loginUser.imgPath}" alt="author" />
-                </div>
-                <div class="author-content pt-2 p-0">
-                    <h3 class="mb-1" th:text="${session.loginUser.userAccount}"></h3>
-                    <p class="detail"><i class="fa fa-phone"></i> [[${session.loginUser.userTel}]]</p>
-                    <p class="detail"><i class="fa fa-envelope-o"></i> [[${session.loginUser.userEmail}]]</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard
-        Navigation</a>
-    <div class="dashboard-nav">
-        <div class="dashboard-nav-inner">
-            <ul>
-                <li th:class="${cur == 'forum' ? 'active': ''}">
-                    <a href="all-article"><i class="sl sl-icon-layers"></i> 话题广场</a>
-                </li>
-                <li th:class="${cur == 'article' ? 'active': ''}">
-                    <a href="findOwnArticles"><i class="sl sl-icon-layers"></i>我的文章</a>
-                </li>
-                <li th:if="${session.loginUser.roleStatus eq 4 or session.loginUser.roleStatus eq 0}" th:class="${cur == 'category' ? 'active': ''}">
-                    <a href="all-category"><i class="sl sl-icon-layers"></i>类别管理</a>
                 </li>
             </ul>
         </div>

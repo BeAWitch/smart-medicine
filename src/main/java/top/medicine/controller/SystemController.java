@@ -28,15 +28,6 @@ public class SystemController extends BaseController<User> {
         return "index";
     }
 
-
-    @GetMapping("/doctor")
-    public String doctor() {
-        /*if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }*/
-        return "doctor";
-    }
-
     @SneakyThrows
     @ResponseBody
     @GetMapping("/login")
@@ -242,127 +233,6 @@ public class SystemController extends BaseController<User> {
         return "all-video";
     }
 
-    @GetMapping("all-article")
-    public String allArticle(Map<String, Object> map) {
-        List<Article> articles = articleService.all();
-        List<Category> categories = categoryService.all();
-        Map<Integer, String> categoryIdToNameMap = categoryService.getIdToNameMap();
-        Map<Integer, String> userIdToNameMap = userService.getIdToNameMap();
-        if (articles.size() > 9)
-            map.put("articles", articles.subList(0, 9));
-        else
-            map.put("articles", articles);
-        map.put("categories", categories);
-        map.put("categoryIdToNameMap", categoryIdToNameMap);
-        map.put("userIdToNameMap", userIdToNameMap);
-        map.put("page", 1);
-        map.put("size", articles.size() / 9 + 1);
-        return "all-article";
-    }
-
-    @GetMapping("findArticles")
-    public String findArticles(Map<String, Object> map, String title, String category, Integer page) {
-        page = ObjectUtils.isEmpty(page) ? 1 : page;
-        Map<String, Integer> nameToIdMap = categoryService.getNameToIdMap();
-        Integer categoryId = nameToIdMap.get(category);
-        map.putAll(articleService.getArticleList(null, title, categoryId, page));
-
-        List<Category> categories = categoryService.all();
-        Map<Integer, String> categoryIdToNameMap = categoryService.getIdToNameMap();
-        Map<Integer, String> userIdToNameMap = userService.getIdToNameMap();
-        map.put("categories", categories);
-        map.put("categoryIdToNameMap", categoryIdToNameMap);
-        map.put("userIdToNameMap", userIdToNameMap);
-        map.put("page", page);
-        map.put("title", title);
-        map.put("category", category);
-        return "all-article";
-    }
-
-    @GetMapping("findOwnArticles")
-    public String findOwnArticles(Map<String, Object> map, String title, String category, Integer page) {
-        page = ObjectUtils.isEmpty(page) ? 1 : page;
-        Map<String, Integer> nameToIdMap = categoryService.getNameToIdMap();
-        Integer categoryId = nameToIdMap.get(category);
-        map.putAll(articleService.getArticleList(loginUser.getId(), title, categoryId, page));
-
-        List<Category> categories = categoryService.all();
-        Map<Integer, String> categoryIdToNameMap = categoryService.getIdToNameMap();
-        Map<Integer, String> userIdToNameMap = userService.getIdToNameMap();
-        map.put("categories", categories);
-        map.put("categoryIdToNameMap", categoryIdToNameMap);
-        map.put("userIdToNameMap", userIdToNameMap);
-        map.put("page", page);
-        map.put("title", title);
-        map.put("category", category);
-        return "ownArticle";
-    }
-
-    @GetMapping("articleDetail")
-    public String articleDetail(Map<String, Object> map, Integer id, String createUser, String category) {
-        Article article = articleService.get(id);
-        map.put("article", article);
-        map.put("createUser", createUser);
-        map.put("category", category);
-        return "articleDetail";
-    }
-
-    @GetMapping("add-article")
-    public String addArticle(Map<String, Object> map, Integer id) {
-        Article article = new Article();
-        if (Assert.notEmpty(id)){
-            article = articleService.get(id);
-        }
-        List<Category> categories = categoryService.all();
-        map.put("categories", categories);
-        map.put("article", article);
-        return "add-article";
-    }
-
-    @GetMapping("all-category")
-    public String allCategory(Map<String, Object> map) {
-        List<Category> categories = categoryService.all();
-        Map<Integer, String> userIdToNameMap = userService.getIdToNameMap();
-        if (categories.size() > 9)
-            map.put("categories", categories.subList(0, 9));
-        else
-            map.put("categories", categories);
-        map.put("userIdToNameMap", userIdToNameMap);
-        map.put("page", 1);
-        map.put("size", categories.size() / 9 + 1);
-        return "all-category";
-    }
-
-    @GetMapping("findCategories")
-    public String findCategories(Map<String, Object> map, String categoryName, Integer page) {
-        page = ObjectUtils.isEmpty(page) ? 1 : page;
-
-        map.putAll(categoryService.getCategoryList(categoryName, page));
-        Map<Integer, String> userIdToNameMap = userService.getIdToNameMap();
-
-        map.put("userIdToNameMap", userIdToNameMap);
-        map.put("page", page);
-        map.put("categoryName", categoryName);
-
-        return "all-category";
-    }
-
-    @GetMapping("add-category")
-    public String addCategory(Map<String, Object> map, Integer id) {
-        Category category = new Category();
-        if (Assert.notEmpty(id)){
-            category = categoryService.get(id);
-        }
-
-        map.put("category", category);
-        return "add-category";
-    }
-
-    @GetMapping("identification")
-    public String identification() {
-        return "identification";
-    }
-
     @GetMapping("all-user")
     public String allUser(Map<String, Object> map) {
         if (Assert.isEmpty(loginUser)) {
@@ -388,14 +258,6 @@ public class SystemController extends BaseController<User> {
         map.put("user", user);
 
         return "add-user";
-    }
-
-    @GetMapping("/bigData")
-    public String bigData(Map<String, Object> map) {
-        if (Assert.isEmpty(loginUser)) {
-            return "redirect:/index.html";
-        }
-        return "bigData";
     }
 
 }

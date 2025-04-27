@@ -1,10 +1,7 @@
 package top.medicine.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.medicine.dao.UserDao;
-import top.medicine.entity.Category;
 import top.medicine.entity.User;
 import top.medicine.utils.Assert;
 import top.medicine.utils.BeanUtil;

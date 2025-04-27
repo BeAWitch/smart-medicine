@@ -7,7 +7,7 @@ spring:
   # 数据源配置
   datasource:
     username: root
-    password: 123456
+    password: root
     url: jdbc:mysql://127.0.0.1:3306/smart-medicine?serverTimezone=Hongkong&useAffectedRows=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
@@ -17,8 +17,8 @@ spring:
 
   # 邮件配置
   mail:
-    username: xxxxxxxxxxxxxxxxxx
-    password: xxxxxxxxxxxxxxxxxx
+    username: 2213803434@qq.com
+    password: xxxxxxxxxxxxxxxxx
     host: smtp.qq.com
     port: 465
     properties:
@@ -48,24 +48,9 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-# 阿里云通义千问配置
-ai-key: sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-
 # 阿里云对象存储配置
 oss:
-  bucket-name: xxxxxxxxxxxxxxxxxxxxxxx
-  end-point: xxxxxxxxxxxxxxxxxxxxx
-  access-key: xxxxxxxxxxxxxxxxxxxxx
-  access-secret: xxxxxxxxxxxxxxxxxxxxx
-
-# 腾讯地图导航APIkey
-map-key:
-  key: xxxxxxxxxxxxxxxxxxxxx
-server:
-  address: 0.0.0.0
-  port: 8080
-
-# 中草药识别
-flask:
-  identification:
-    baseurl: 'localhost:8081'
+  bucket-name: smart-medicine001
+  end-point: oss-cn-hangzhou.aliyuncs.com
+  access-key: xxxxxxxxxxxxxxxxx
+  access-secret: xxxxxxxxxxxxxxxxx

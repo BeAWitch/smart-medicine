@@ -17,9 +17,6 @@ import javax.servlet.http.HttpSession;
 
 
 public class BaseController<T> {
-
-    @Autowired
-    protected ApiService apiService;
     @Autowired
     protected UserService userService;
     @Autowired
@@ -40,12 +37,6 @@ public class BaseController<T> {
 
     @Autowired
     protected BaseService<T> service;
-
-    @Autowired
-    protected ArticleService articleService;
-
-    @Autowired
-    protected CategoryService categoryService;
 
     @Autowired
     protected EmailClient emailClient;

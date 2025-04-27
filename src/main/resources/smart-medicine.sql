@@ -446,7 +446,7 @@ CREATE TABLE `user`
     `user_sex`     varchar(1)   DEFAULT NULL COMMENT '用户性别',
     `user_email`   varchar(255) DEFAULT NULL COMMENT '用户邮箱',
     `user_tel`     varchar(50)  DEFAULT NULL COMMENT '手机号',
-    `role_status`  int(11)      DEFAULT NULL COMMENT '角色状态，1管理员，0普通用户',
+    `role_status`  int(11)      DEFAULT NULL COMMENT '角色状态',
     `img_path`     varchar(255) DEFAULT NULL COMMENT '用户头像',
     `create_time`  datetime     DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  datetime     DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -462,12 +462,12 @@ CREATE TABLE `user`
 BEGIN;
 INSERT INTO `user` (`id`, `user_account`, `user_name`, `user_pwd`, `user_age`, `user_sex`, `user_email`, `user_tel`,
                     `role_status`, `img_path`, `create_time`, `update_time`)
-VALUES (4, 'admin', '管理员', '123456', 23, '男', '485184047@qq.com', '17746678954', 1,
+VALUES (4, 'admin', '管理员', '123456', 23, '男', '485184047@qq.com', '17746678954', 0,
         'https://q1.qlogo.cn/g?b=qq&nk=485184047&s=100', '2024-03-26 15:55:41',
         '2024-03-26 15:56:15');
 INSERT INTO `user` (`id`, `user_account`, `user_name`, `user_pwd`, `user_age`, `user_sex`, `user_email`, `user_tel`,
                     `role_status`, `img_path`, `create_time`, `update_time`)
-VALUES (5, 'liboyou', '杂鱼', '123456', 23, '女', '3396812897@qq.com', '17879544343', 0,
+VALUES (5, 'test', 'test', '123456', 23, '女', '3396812897@qq.com', '17879544343', 0,
         'https://q1.qlogo.cn/g?b=qq&nk=3396812897&s=100', '2024-03-26 14:25:53',
         '2024-03-26 14:27:12');
 COMMIT;
@@ -497,152 +497,4 @@ VALUES ('医药政策改革：惠及亿万患者的新篇章', '本视频深入�
        ('医药创新政策：激发行业活力，推动科技进步', '本视频聚焦医药创新政策，介绍了政策如何鼓励医药企业加大研发投入、推动新药研发进程。通过展示医药创新成果和企业家的心声，激发观众对医药创新的关注和支持，共同推动医药行业科技进步。', 'https://yinlin712.oss-cn-beijing.aliyuncs.com/4/c120996a8f9ad539a2c8aa79b8488900.mp4'),
        ('中医药发展政策：传承国粹，助力健康中国', '本视频深入探讨了中医药发展政策的内容和意义，包括政策如何支持中医药传承与创新、推动中医药国际化等方面。通过展示中医药的独特魅力和现代医学价值，激发观众对中医药的认同感和自豪感，共同助力健康中国建设。', 'https://yinlin712.oss-cn-beijing.aliyuncs.com/4/c120996a8f9ad539a2c8aa79b8488900.mp4');
 COMMIT;
-
-
--- ----------------------------
--- Records of Channel
--- ----------------------------
-DROP TABLE IF EXISTS `Channel`;
-CREATE TABLE `Channel`
-(
-    `id`   int(11) NOT NULL AUTO_INCREMENT,
-    `type` int(11)      DEFAULT NULL,
-    `name` text,
-    `icon` varchar(255) DEFAULT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8mb4;
-
-BEGIN;
-INSERT INTO `Channel` (`type`, `name`, `icon`)
-VALUES (0, '感冒', 'https://randomuser.me/api/portraits/women/85.jpg'),
-       (0, '脚气', 'https://randomuser.me/api/portraits/women/85.jpg'),
-       (1, '梅毒', 'https://randomuser.me/api/portraits/women/85.jpg'),
-       (1, '艾滋病', 'https://randomuser.me/api/portraits/women/85.jpg');
-COMMIT;
-
-
--- ----------------------------
--- Records of Channel History
--- ----------------------------
-DROP TABLE IF EXISTS `ChannelHistory`;
-CREATE TABLE `ChannelHistory`
-(
-    `id`          int(11) NOT NULL AUTO_INCREMENT,
-    `channel_id`  int(11) NOT NULL,
-    `user_id`     int(11) NOT NULL,
-    `message`     text     DEFAULT NULL,
-    `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8mb4;
-
-BEGIN;
-INSERT INTO `ChannelHistory` (`channel_id`, `user_id`, `message`)
-VALUES (1, 4, '感冒'),
-       (1, 5, '脚气'),
-       (1, 4, '乳腺癌'),
-       (2, 4, '梅毒'),
-       (2, 4, '糖尿病');
-COMMIT;
-
-
--- ----------------------------
--- Records of PostList
--- ----------------------------
-DROP TABLE IF EXISTS `PostList`;
-CREATE TABLE `PostList`
-(
-    `id`          int(11) NOT NULL AUTO_INCREMENT,
-    `user_id`     int(11) NOT NULL,
-    `channel_id`  int(11) NOT NULL,
-    `title`       text     DEFAULT NULL,
-    `description`     text     DEFAULT NULL,
-    `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-    `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8mb4;
-
-BEGIN;
-INSERT INTO `PostList` (`user_id`, `channel_id`, `title`, `description`)
-VALUES (4, 3, '测试标题1', '测试1'),
-       (5, 3, '测试标题2', '测试2'),
-       (5, 4, '测试标题3', '测试3');
-COMMIT;
-
--- ----------------------------
--- Records of PostReply
--- ----------------------------
-DROP TABLE IF EXISTS `PostReply`;
-CREATE TABLE `PostReply`
-(
-    `id`          int(11) NOT NULL AUTO_INCREMENT,
-    `user_id`     int(11) NOT NULL,
-    `post_id`  int(11) NOT NULL,
-    `message`     text     DEFAULT NULL,
-    `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  AUTO_INCREMENT = 1
-  DEFAULT CHARSET = utf8mb4;
-
-BEGIN;
-INSERT INTO `PostReply` (`user_id`, `post_id`, `message`)
-VALUES (4, 1, '这里是1l'),
-       (5, 1, '这里是2l'),
-       (5, 2, '这里是3l');
-COMMIT;
-
-
-
-
-SET FOREIGN_KEY_CHECKS = 1;
-
-
-DROP TABLE IF EXISTS article;
-DROP TABLE IF EXISTS category;
--- 分类表
-create table category(
-                         id int unsigned primary key auto_increment comment 'ID',
-                         category_name varchar(32) not null comment '分类名称',
-                         create_user int(11) not null comment '创建人ID',
-                         create_time datetime DEFAULT CURRENT_TIMESTAMP,
-												 update_time datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                         constraint fk_category_user foreign key (create_user) references user(id) -- 外键约束
-);
-
-
--- 文章表
-create table article(
-                        id int unsigned primary key auto_increment comment 'ID',
-                        title varchar(30) not null comment '文章标题',
-                        content varchar(10000) not null comment '文章内容',
-                        category_id int unsigned comment '文章分类ID',
-                        create_user int(11) not null comment '创建人ID',
-                        create_time datetime DEFAULT CURRENT_TIMESTAMP,
-												update_time datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                        constraint fk_article_category foreign key (category_id) references category(id),-- 外键约束
-                        constraint fk_article_user foreign key (create_user) references user(id) -- 外键约束
-);
-
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
-INSERT INTO article (title, content, category_id, create_user) VALUES('2', '2222', 1, 4);
 
