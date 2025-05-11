@@ -1,5 +1,6 @@
 package top.medicine.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-
+@AllArgsConstructor
 public class BaseController<T> {
     @Autowired
     protected UserService userService;
@@ -42,6 +43,9 @@ public class BaseController<T> {
     protected EmailClient emailClient;
     protected HttpSession session;
     protected User loginUser;
+
+    public BaseController() {
+    }
 
 
     /**

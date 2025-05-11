@@ -8,6 +8,7 @@ import top.medicine.utils.BeanUtil;
 import top.medicine.utils.VariableNameUtils;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +39,9 @@ public class UserService extends BaseService<User> {
 
     @Override
     public User save(User o) {
+        if (o == null) {
+            return null;
+        }
         if (Assert.isEmpty(o.getId())) {
             userDao.insert(o);
         } else {
@@ -58,13 +62,12 @@ public class UserService extends BaseService<User> {
 
     public Map<Integer, String> getIdToNameMap(){
         Map<Integer, String> integerStringMap = new HashMap<>();
-        List<User> categories = this.all();
-        for (User user : categories){
+        List<User> users = this.all();
+        for (User user : users){
             integerStringMap.put(user.getId(), user.getUserAccount());
         }
         return integerStringMap;
     }
-
 
     public Map<String, Object> findUserOne(Integer id) {
         Map<String, Object> map = new HashMap<>(4);
@@ -72,7 +75,6 @@ public class UserService extends BaseService<User> {
         // 查询单个用户基本信息
         User user = userDao.selectOne(new QueryWrapper<User>().eq("id", id));
         map.put("user", user);
-
 
         return map;
     }

@@ -16,6 +16,9 @@ public class VideoService extends BaseService<Video>{
 
     @Override
     public Video save(Video o) {
+        if (o == null) {
+            return null;
+        }
         if (Assert.isEmpty(o.getId())) {
             videoDao.insert(o);
         } else {

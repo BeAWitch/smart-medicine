@@ -1,5 +1,6 @@
 package top.medicine.controller;
 import cn.hutool.core.util.StrUtil;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import java.util.Map;
  * @description  用户登陆与注册
  */
 @RestController
+@AllArgsConstructor
 @RequestMapping(value = "login")
 public class LoginController extends BaseController<User> {
 

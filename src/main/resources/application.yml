@@ -18,7 +18,7 @@ spring:
   # 邮件配置
   mail:
     username: 2213803434@qq.com
-    password: xxxxxxxxxxxxxxxxx
+    password: ugnioukqffcteabj
     host: smtp.qq.com
     port: 465
     properties:

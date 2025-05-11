@@ -1,6 +1,7 @@
 package top.medicine.component;
 
 import cn.hutool.core.util.IdUtil;
+import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.model.CannedAccessControlList;
 import com.aliyun.oss.model.CreateBucketRequest;
@@ -28,12 +29,15 @@ public class OssClient {
     @Value("${oss.access-secret}")
     private String accessKeySecret;
 
-    
+    protected OSSClient createOssClient() {
+        return new OSSClient(endPoint, accessKeyId, accessKeySecret);
+    }
+
     public String upload(MultipartFile file, String path) throws IOException {
         if (file == null || path == null) {
             return null;
         }
-        OSSClient ossClient = new OSSClient(endPoint, accessKeyId, accessKeySecret);
+        OSSClient ossClient = createOssClient();
         if (!ossClient.doesBucketExist(bucketName)) {
             ossClient.createBucket(bucketName);
             CreateBucketRequest createBucketRequest = new CreateBucketRequest(bucketName);
